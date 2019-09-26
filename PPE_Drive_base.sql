@@ -35,7 +35,7 @@ CREATE TABLE clients(
   cliEmail varchar(50),
   cliPw text,
   cliTelFix char(10) null,
-  cliTelPort char(10),
+  cliTelPort char(10) not null,
   cliKey char(50),
   cliConfirme boolean
 ) ENGINE=innodb CHARSET=utf8;

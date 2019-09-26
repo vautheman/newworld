@@ -1,15 +1,5 @@
 <!DOCTYPE html>
-<?php include 'assets/include/connectBDD.php';
-if(isset($_SESSION['id']) AND isset($_SESSION['email']))
-{
-  if(isset($_SESSION['client']))
-  {
-    $id = htmlspecialchars($_SESSION['id']);
-    $email = htmlspecialchars($_SESSION['email']);
-    $req = $bdd->prepare("SELECT * FROM clients WHERE cliId = ?");
-    $req->execute(array($id));
-    $cur = $req->fetch();
-?>
+<?php include 'assets/include/connectBDD.php';?>
 <html lang="fr" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -29,34 +19,62 @@ if(isset($_SESSION['id']) AND isset($_SESSION['email']))
     ?>
 
     <div style="padding-top: 100px;" class="container">
-      <div class="">
-        <h1>Mes produits</h1>
-        <div class="d-flex justify-content-center">
-          <div style="width: 300px;" class="card mr-2">
-            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
+      <h1>Nos produits</h1>
+      <hr>
+      <div class="row d-flex justify-content-center">
+        <?php
+        if(isset($_GET['idRayon']))
+        {
+            $req = $bdd->prepare("SELECT * FROM produits WHERE produitValid = 1 AND produitRayon = ?");
+            $req->execute(array($_GET['idRayon']));
+            while($cur = $req->fetch())
+            {
+              ?>
+              <div style="width: 300px;" class="card m-2">
+                <img class="card-img-top produitsBig" src="assets/images/produits/<?php echo $cur[4]; ?>" alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title"><a><?php echo $cur[2]; ?></a></h4>
+                  <p class="card-text"><?php echo $cur[3]; ?></p>
+                  <a href="#" class="btn btn-primary">Ajouter</a>
+                </div>
+              </div>
+              <?php
+            }
+        } else {
+          $req = $bdd->prepare("SELECT * FROM produits WHERE produitValid = 1");
+          $req->execute();
+          while($cur = $req->fetch())
+          {
+          ?>
+          <div style="width: 300px;" class="card m-2">
+            <img class="card-img-top produitsBig" src="assets/images/produits/<?php echo $cur[4]; ?>" alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title"><a>Card title</a></h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Button</a>
+              <h4 class="card-title"><a><?php echo $cur[2]; ?></a></h4>
+              <p class="card-text"><?php echo $cur[3]; ?></p>
+              <a href="#" class="btn btn-primary">Ajouter</a>
             </div>
           </div>
-          <div style="width: 300px;" class="card mr-2">
-            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title"><a>Card title</a></h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Button</a>
-            </div>
-          </div>
-          <div style="width: 300px;" class="card mr-2">
-            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title"><a>Card title</a></h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Button</a>
-            </div>
-          </div>
-        </div>
+        <?php
+          }
+        }
+        ?>
+      </div>
+      <div class="m-4">
+        <nav aria-label="...">
+          <ul class="pagination">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active" aria-current="page">
+              <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
     <?php include 'assets/include/footer.php'; ?>
@@ -70,6 +88,3 @@ if(isset($_SESSION['id']) AND isset($_SESSION['email']))
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.4/js/mdb.min.js"></script>
   </body>
 </html>
-<?php
-}
-} else header("Location: index.php"); ?>

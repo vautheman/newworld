@@ -82,7 +82,7 @@
       while($cur = $req->fetch())
       {
       ?>
-      <a href="rayons.php?idRayon=<?php echo $cur[0]; ?>"><div class="p-2 bd-highlight"><img class="rayons" src="assets/images/rayons/<?php echo $cur[4]; ?>"><br><p class="text-center"><?php echo $cur[2]; ?></p></div></a>
+      <a href="produits.php?idRayon=<?php echo $cur[0]; ?>"><div class="p-2 bd-highlight"><img class="rayons" src="assets/images/rayons/<?php echo $cur[4]; ?>"><br><p class="text-center"><?php echo $cur[2]; ?></p></div></a>
     <?php } ?>
     </div>
 
@@ -92,7 +92,7 @@
       <div class="row">
         <div class="col">
           <div class="card">
-            <img class="card-img-top" src="https://static.timesofisrael.com/fr/uploads/2018/10/TOV6-e1539258240137.jpg" alt="Card image cap">
+            <img class="card-img-top producteurs" src="https://static.timesofisrael.com/fr/uploads/2018/10/TOV6-e1539258240137.jpg" alt="Card image cap">
               <div class="card-body">
                 <h4 class="card-title"><a>Agriculteur</a></h4>
                 <p class="card-text">Florent Augay est un pépiniériste et apiculteur qui mène ces deux activités de front  à Chalmazel dans le département de la Loire. Grâce à son lien avec la nature et une réflexion élaborée depuis plusieurs années, il a développé une nouvelle gestion de la culture des arbres qu’il utilise pour ALTI-PEP.</p>
@@ -102,7 +102,7 @@
         </div>
         <div class="col">
           <div class="card">
-            <img class="card-img-top" src="http://www.chateauneuf-du-pape-tourisme.fr/sites/chateauneuf-du-pape-tourisme.fr/files/styles/slider_page_detail/public/3144663_3.jpg?itok=NjTJ8QcY" alt="Card image cap">
+            <img class="card-img-top producteurs" src="http://www.chateauneuf-du-pape-tourisme.fr/sites/chateauneuf-du-pape-tourisme.fr/files/styles/slider_page_detail/public/3144663_3.jpg?itok=NjTJ8QcY" alt="Card image cap">
               <div class="card-body">
                 <h4 class="card-title"><a>Chocolaterie Bernard Castelain</a></h4>
                 <p class="card-text">Plongez dans le monde du chocolat avec la Chocolaterie artisanale Castelain, installée au cœur des vignes de Châteauneuf-du-Pape à 15km d'Avignon. Un site dédié à la gourmandise : 300m2 aux odeurs de Provence et un bar à chocolat.</p>
@@ -112,7 +112,7 @@
         </div>
         <div class="col">
           <div class="card">
-            <img class="card-img-top" src="https://www.ecriplume.com/wp-content/uploads/2013/02/1377051.jpg" alt="Card image cap">
+            <img class="card-img-top producteurs" src="https://www.ecriplume.com/wp-content/uploads/2013/02/1377051.jpg" alt="Card image cap">
               <div class="card-body">
                 <h4 class="card-title"><a>Le petit magasin de Madame Bonbon</a></h4>
                 <p class="card-text">Ce délicieux lieu de perdition des palais était le Temple du Bonbon. Vous n’y trouviez rien d’autres que des friandises… toutes les friandises dont vous pouviez rêver.</p>
@@ -134,9 +134,9 @@
       {
       ?>
         <div class="card m-2" style="width: 18rem;">
-          <a href="produits.php?idProduit=<?php echo $cur[0]; ?>"><img src="assets/images/produits/<?php echo $cur[4]; ?>" class="card-img-top produits" alt="..."></a>
+          <a href="produitSingle.php?idProduit=<?php echo $cur[0]; ?>"><img src="assets/images/produits/<?php echo $cur[4]; ?>" class="card-img-top produits" alt="..."></a>
           <div class="card-body">
-            <h5 class="card-title"><?php echo $cur[2] ?><a class="float-right" href="#" type="button">Voir</a></h5>
+            <h5 class="card-title"><?php echo $cur[2] ?><a class="float-right btn btn-primary" href="#">Voir</a></h5>
           </div>
         </div>
       <?php } ?>

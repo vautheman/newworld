@@ -351,6 +351,18 @@ img.produits{
   object-fit: cover;
 }
 
+img.produitsBig{
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+
+img.producteurs{
+  width: 350px;
+  height: 230px;
+  object-fit: cover;
+}
+
 img.rayons{
   height: 50px;
   object-fit: cover;

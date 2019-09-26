@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
-  <a class="navbar-brand text-dark" href="#">New World</a>
+  <a class="navbar-brand text-dark" href="index.php">New World</a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown">

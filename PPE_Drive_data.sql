@@ -11,12 +11,17 @@ DELETE FROM superAdministrateur;
 DELETE FROM produits;
 DELETE FROM rayons;
 DELETE FROM producteurs;
+DELETE FROM clients;
 
 -- Ajout des données dans les tables
 -- Table producteur
 INSERT INTO producteurs VALUES
   (1, "DUPOND", "Charlie", "contact@gmail.com", "motdepasse", "", "0649259506", "Le chat qui fume", "Commerçant", "6 rue des remparts", "166862025423", "a94a8fe5ccb1", "1"),
-  (2, "DOE", "John", "john.doe@gmail.com", "motdepasse", "", "0649259506", "Chez john doe", "Agriculteur", "lieu-dit l'olivette", "45324564135456", "daf5z6fd5z4dfz", "1");
+  (2, "DOE", "John", "john.doe@gmail.com", "motdepasse", "", "0649259506", "Chez john doe", "Agriculteur", "lieu-dit l'olivette", "45324564135456", "daf5z6fd5z4dfz", "1"),
+  (3, "AUTHEMAN", "Victor", "authirard.victor@gmail.com", "6b3c679aeefef0add0753fd84ee38354815523a0", "", "0649259506", "Chez john doe", "Agriculteur", "lieu-dit l'olivette", "45324564135456", "daf5z6fd5z4dfz", "1");
+
+INSERT INTO clients VALUES
+(1, "AUTHEMAN", "Victor", "authirard.victor@gmail.com", "6b3c679aeefef0add0753fd84ee38354815523a0", "", "0649259506", "454534", "1");
 
 -- Table administrateur
 INSERT INTO administrateur VALUES (1, "autheman", "vautheman", "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3", "authirard.victor@gmail.com", "0649259506");
