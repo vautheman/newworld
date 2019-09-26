@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhai');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700&display=swap');
+
+html, body{
+  margin: 0;
+  width: 100%;
+  height: auto;
+}
+
+.loader {
+	position : fixed;
+	z-index: 99999999999;
+	background-color: black;
+	background-size: auto;
+	top : 0px;
+	left : 0px;
+	height : 100%;
+	width : 100%;
+	cursor : wait;
+}
+
+.loader_text{
+  color: white;
+  letter-spacing: 3px;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  margin-top: -90px;
+  font-family: 'Anton';
+}
+
+body{
+  /*background-color: #003d66;*/
+  /*background: linear-gradient(-50deg, #003d66 50%, #2651A6, #6F8ABF);*/
+  background-color: #f4f4f4;
+}
+
+div.body{
+  background-color: #f2f2f2;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, li, ul{
+  /*color: white;*/
+  font-family: 'Lato';
+  transition: 150ms;
+}
+
+a:hover{
+  transition: 150ms;
+  text-decoration: none;
+  color: #007bff;
+}
+
+/*************** MENU ****************/
+
+nav{
+  position: static;
+  background-color: white;
+  padding: 0px;
+  width: 100%;
+  height: 50px;
+}
+.logo{
+  transition: 300ms;
+}
+.logo:hover{
+  transform: rotate(180deg);
+  transition: 300ms;
+}
+
+.icon-shopping{
+  color: #ee3d6e!important;
+}
+
+.icon-shopping i{
+  transform: scaleX(-1);
+}
+
+/*************** BANNIERE ****************/
+
+div#banner{
+  /*background: linear-gradient(60deg, rgba(0, 140, 167, 1) 60%, rgba(1, 167, 181, 1) 40%);*/
+  background: #e8d8ea;
+  height: 400px;
+  width: 100%;
+  color: #002a3a !important;
+  transition: 150ms;
+}
+
+#banner .banner-text{
+  top: 100px;
+  left: 50px;
+  max-width: 500px;
+}
+
+.banner-img{
+  position: absolute;
+  width: 100%;
+  clip-path: circle(60% at 90% 65%);
+  background: url('https://i.pinimg.com/originals/59/05/f4/5905f4b95a51ad49b9036f097e0cdc05.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  right: 0;
+  padding: 200px;
+  transition: 150ms;
+}
+
+.banner-img:hover{
+  background-size: 150%;
+  transition: 150ms;
+}
+
+.banner-text h1{
+  font-size: 44pt;
+  font-family: 'Montserrat' !important;
+  font-weight: 700;
+}
+.banner-text h4{
+  font-size: 18pt;
+  font-family: 'Lato' !important;
+}
+
+.banner-text button{
+  position: relative;
+  top: 10px;
+  text-transform: uppercase;
+  background-color: #ee3d6e;
+  border-radius: 25px;
+}
+
+/******************* SOUS BANNIERE *********************/
+
+#sous-banner{
+  height: 220px;
+  margin-bottom: 1px;
+}
+
+#sous-banner .img-left{
+  background-image: url('http://www.cyrillignac.com/wp-content/uploads/2016/03/IMG_9034-Chocolaterie-%C2%A9Yann-Deret.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+
+#sous-banner .img-center{
+  background-image: url('https://boulangerie.xinuwebpage.ovh/imgs/1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#sous-banner .img-right{
+  background-image: url('https://www.lametro.fr/uploads/Image/72/IMF_100/GAB_LA_METRO/921_650_Pano-Un-territoire-agricole.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#sous-banner .text{
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 220px;
+  padding-top: 20px;
+}
+
+/********************** BIG CARD IMAGE BOOTSTRAP *************************/
+
+.card-image{
+  border-radius: 0px !important;
+}
+
+p.btn{
+  pointer-events:none;
+  box-shadow: none;
+  padding: 3px !important;
+  font-size: 8pt;
+}
+
+form{
+  padding-top: 50px;
+}
+
+img#logo{
+  width: 150px;
+/*position: absolute;
+  top: 77%;
+  text-align: center;
+  left: 95vh;*/
+  top: 70%; left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 999;
+}
+
+div#banner h1#titleMain{
+  font-size: 3em;
+  font-family: 'Montserrat', sans-serif;
+}
+
+small#cliErreurMsgMail, small#cliErreurMsgPw, small#cliErreurMsgPwConfirm, small#prodErreurMsgMail, small#prodErreurMsgPw, small#prodErreurMsgPwConfirm{
+  visibility: hidden;
+  color: #f8d7da !important;
+}
+
+small{
+  color: white;
+}
+
+footer{
+  margin: 0 auto;
+  margin-top: 100px;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  position: relative;
+  bottom: 0;
+  color:white;
+  background: #0D0D0D!important;
+}
+
+div#menu{
+  float: left;
+}
+
+div#menu li{
+  list-style: none;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+div.carte-producteur p, h4{
+  color: black !important;
+}
+
+.form-connexion{
+  margin-top: 50px !important;
+  max-width: 500px;
+  width: auto;
+  margin: auto;
+}
+
+div#divProducteur{
+  visibility: hidden;
+}
+
+.btn{
+  padding: .50rem 1rem !important;
+}
+
+.inscription{
+  float: right;
+}
+
+input[type="search"]{
+  opacity: 0.2!important;
+  width: 540px;
+}
+
+.search_form_field::before{
+  content: "test" !important;
+  position: absolute !important;
+}
+
+.ui-autocomplete-input ul{
+  list-style-type: none;
+  width: 300px;
+}
+
+.container{
+  z-index: 1;
+}
+
+#pills-tab{
+  position: absolute;
+  right: 0;
+  top: 0px;
+}
+
+#inscription-container{
+  width: 420px;
+  background-color: #fff;
+  margin: auto;
+  min-width: 320px;
+  flex: 0 1 420px;
+  box-shadow: rgba(0,0,0,.03) 0 0 10px 5px;
+  align-self: center;
+  margin-top: 50px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+
+#inscription-container.bis{
+  width: 800px;
+}
+
+#inscription-container form{
+  padding: 0;
+}
+
+#inscription-container label{
+  color: #939C9E !important;
+  text-transform: uppercase;
+  font-size: .8125rem;
+}
+
+#inscription-container input::placeholder{
+  font-size: 0.8125rem;
+  color: #939C9E;
+}
+
+#inscription-container p{
+  text-align: center;
+  color: #576569;
+  font-size: 0.8125rem;
+}
+
+div.btn-connexion{
+  text-align: center;
+}
+
+button.btn, input.btn{
+  width: 300px;
+  color: white;
+  border-radius: 3px;
+}
+
+ button.btn-facebook, input.btn-facebook{
+   background-color: #4266b2;
+   color: white !important;
+ }
+
+ button.btn-google, input.btn-google{
+   background-color: #4688f1;
+   color: white !important;
+ }
+
+ button.btnRejoindre, input.btnRejoindre{
+   background-color: #f1f1f2;
+   color: #939C9E;
+   text-transform: inherit;
+   font-weight: 700;
+   font-size: 12pt !important;
+   cursor: default;
+ }
+
+img.produits{
+  height: 180px;
+  object-fit: cover;
+}
+
+img.rayons{
+  height: 50px;
+  object-fit: cover;
+}
