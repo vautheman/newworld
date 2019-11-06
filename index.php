@@ -75,73 +75,100 @@
         </div>
       </div>
     </div>
-    <div class="d-flex flex-row bg-light mb-4 pt-4">
-      <?php
-      $req = $bdd->prepare("SELECT * FROM rayons");
-      $req->execute();
-      while($cur = $req->fetch())
-      {
-      ?>
-      <a href="produits.php?idRayon=<?php echo $cur[0]; ?>"><div class="p-2 bd-highlight"><img class="rayons" src="assets/images/rayons/<?php echo $cur[4]; ?>"><br><p class="text-center"><?php echo $cur[2]; ?></p></div></a>
-    <?php } ?>
+
+
+    <div class="container">
+      <h1 class="text-center">Nos produits</h1>
+      <style media="screen">
+        #myTab{
+          text-align: center !important;
+          display: block;
+        }
+        #myTab li{
+          list-style-type: none;
+          display: inline-block;
+        }
+      </style>
+      <ul class="text-center nav" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active text-dark" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            aria-selected="true">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+            aria-selected="false">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+            aria-selected="false">Contact</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active d-flex flex-row justify-content-between" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <?php
+            $req = $bdd->prepare("SELECT * FROM produits LIMIT 4");
+            $req->execute();
+            while($cur = $req->fetch())
+            {
+          ?>
+            <div style="width: 250px;" class=" border border-dark p-2 m-2 text-center">
+              <img style="margin: 25px" width="150px" src="assets/images/produits/<?php echo $cur[4]; ?>" alt=""><br>
+              <h5 class="text-left"><?php echo $cur[2]; ?></h5>
+              <p class="text-left"><?php echo $cur[5]; ?> €</p>
+              <button style="max-width: 100px; width: auto; padding: 4px !important;" class="btn btn-primary" type="button" name="button">Add to cart</button>
+            </div>
+          <?php
+            }
+          ?>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"></div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"></div>
+      </div>
     </div>
 
-    <div class="container carte-producteur">
-      <h2>Nos producteurs</h2>
-      <hr>
+    <section id="homeCard" class="container" style="margin-top: 100px;">
       <div class="row">
-        <div class="col">
-          <div class="card">
-            <img class="card-img-top producteurs" src="https://static.timesofisrael.com/fr/uploads/2018/10/TOV6-e1539258240137.jpg" alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title"><a>Agriculteur</a></h4>
-                <p class="card-text">Florent Augay est un pépiniériste et apiculteur qui mène ces deux activités de front  à Chalmazel dans le département de la Loire. Grâce à son lien avec la nature et une réflexion élaborée depuis plusieurs années, il a développé une nouvelle gestion de la culture des arbres qu’il utilise pour ALTI-PEP.</p>
-                <a href="#" class="btn btn-primary">En savoir plus</a>
-              </div>
+        <div style="position: relative;" class="col-4">
+          <img src="assets/images/co1.jpg" alt="">
+          <div style="width: 80%; position: absolute; top: 50%; left: 50%; transform:translate(-50%, -50%);" class="text-light text-center">
+            <h4 class="text-light">NEW COLLECTIONS</h4>
+            <h1><b>Season<span>ing</span></b></h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           </div>
         </div>
-        <div class="col">
-          <div class="card">
-            <img class="card-img-top producteurs" src="http://www.chateauneuf-du-pape-tourisme.fr/sites/chateauneuf-du-pape-tourisme.fr/files/styles/slider_page_detail/public/3144663_3.jpg?itok=NjTJ8QcY" alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title"><a>Chocolaterie Bernard Castelain</a></h4>
-                <p class="card-text">Plongez dans le monde du chocolat avec la Chocolaterie artisanale Castelain, installée au cœur des vignes de Châteauneuf-du-Pape à 15km d'Avignon. Un site dédié à la gourmandise : 300m2 aux odeurs de Provence et un bar à chocolat.</p>
-                <a href="#" class="btn btn-primary">En savoir plus</a>
-              </div>
+        <div style="position: relative;" class="col-4">
+          <img src="assets/images/co.jpg" alt="">
+          <div style="width: 80%; position: absolute; top: 50%; left: 50%; transform:translate(-50%, -50%);" class="text-light text-center">
+            <h1><b>Big <span>Sale</span></b></h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
           </div>
         </div>
-        <div class="col">
-          <div class="card">
-            <img class="card-img-top producteurs" src="https://www.ecriplume.com/wp-content/uploads/2013/02/1377051.jpg" alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title"><a>Le petit magasin de Madame Bonbon</a></h4>
-                <p class="card-text">Ce délicieux lieu de perdition des palais était le Temple du Bonbon. Vous n’y trouviez rien d’autres que des friandises… toutes les friandises dont vous pouviez rêver.</p>
-                <a href="#" class="btn btn-primary">En savoir plus</a>
+        <div class="col-4">
+          <div class="row ">
+            <a>
+              <div style="position: relative;" class="col mb-2">
+                <img class="" src="assets/images/co2.jpg" alt="">
+                <div style="width: 80%; position: absolute; top: 50%; left: 50%; transform:translate(-50%, -50%);" class="text-light text-center">
+                  <h1><b>Cooking <span>Oil</span></b></h1>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                </div>
               </div>
+            </a>
+            <a>
+              <div style="position: relative;" class="col mt-4">
+                <img class="" src="assets/images/co3.jpg" alt="">
+                <div style="width: 80%; position: absolute; top: 50%; left: 50%; transform:translate(-50%, -50%);" class="text-light text-center">
+                  <h1><b>Vegeta<span>ble</span></b></h1>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </div>
-    </div>
-    <div class="container-fluid m-4">
-      <h2>Nos Produits</h2>
-      <hr>
-      <div class="row">
-      <!-- Produits -->
-      <?php
-      $req = $bdd->prepare("SELECT * FROM produits WHERE produitValid = 1");
-      $req->execute();
-      while($cur = $req->fetch())
-      {
-      ?>
-        <div class="card m-2" style="width: 18rem;">
-          <a href="produitSingle.php?idProduit=<?php echo $cur[0]; ?>"><img src="assets/images/produits/<?php echo $cur[4]; ?>" class="card-img-top produits" alt="..."></a>
-          <div class="card-body">
-            <h5 class="card-title"><?php echo $cur[2] ?><a class="float-right btn btn-primary" href="#">Voir</a></h5>
-          </div>
-        </div>
-      <?php } ?>
-      </div>
-    </div>
+    </section>
+
+
 
     <?php include 'assets/include/footer.php'; ?>
     <!-- SCRIPT -->

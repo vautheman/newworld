@@ -34,7 +34,7 @@ html, body{
 body{
   /*background-color: #003d66;*/
   /*background: linear-gradient(-50deg, #003d66 50%, #2651A6, #6F8ABF);*/
-  background-color: #f4f4f4;
+  /*background-color: #f4f4f4;*/
 }
 
 div.body{
@@ -366,4 +366,8 @@ img.producteurs{
 img.rayons{
   height: 50px;
   object-fit: cover;
+}
+
+#homeCard span{
+  color: orange;
 }
