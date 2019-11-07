@@ -60,14 +60,6 @@
               <?php
             }
           ?>
-            <li class="p-1 list-group-item border-0">
-              Quick Start
-              <ul>
-                <li class="p-1 list-group-item border-0">Login system form</li>
-                <li class="p-1 list-group-item border-0">Sign-in form</li>
-              </ul>
-            </li>
-            <li class="p-1 list-group-item border-0">Advanced system</li>
           </ul>
         </div>
         <div class="col">
@@ -75,9 +67,18 @@
           <script>
                   CKEDITOR.replace( 'editor1' );
           </script>
-          <h3 class="border-bottom border-secondary pb-2 pt-3 mb-4">Login system form</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a href="#" class="btn btn-success">Login Form</a>
+          <?php
+          if(isset($_GET['item']) AND !empty($_GET['item']))
+          {
+            $req = $bdd->prepare("SELECT * FROM item WHERE itemId = ?");
+            $req->execute(array($_GET['item']));
+            $cur = $req->fetch();
+          ?>
+          <h3 class="border-bottom border-secondary pb-2 pt-3 mb-4"><?php echo $cur['2']; ?></h3>
+          <p><?php echo $cur['3']; ?></p>
+          <?php
+          }
+          ?>
         </div>
       </div>
     </section>
