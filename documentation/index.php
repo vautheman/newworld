@@ -24,6 +24,7 @@
               <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
             </div>
             <input type="text" class="form-control" placeholder="Search ..." aria-label="Username" aria-describedby="addon-wrapping">
+            <input class="btn btn-success form-control" type="submit" name="" value="ok">
           </div>
         </form>
         <h1 class="text-success">NEWWORLD<span class="text-light"><b>DOCS</b></span></h1>
@@ -32,18 +33,38 @@
     </section>
     <section class="container">
       <div class="row mt-4">
-        <div class="col-3">
-          <ul class="list-group">
+        <div class="col-3 position-relative" style="left: -100px;">
+          <ul class="list-group position-fixed" style="width: 15%;">
             <li class="p-1 list-group-item border-0">Quick start</li>
-              <ul>
-                <li class="p-1 list-group-item border-0"></li>
-                <li class="p-1 list-group-item border-0"></li>
-              </ul>
+            <ul>
+              <li class="p-1 list-group-item border-0"><a href="">Connection system</a></li>
+              <li class="p-1 list-group-item border-0"><a href="">Contact the administrator</a></li>
+            </ul>
+            <li class="p-1 list-group-item border-0">Moderation</li>
+            <ul>
+              <li class="p-1 list-group-item border-0"><a href="">The sections (table) and the moderation system</a></li>
+              <li class="p-1 list-group-item border-0"><a href="">Manage shelves</a></li>
+              <li class="p-1 list-group-item border-0"><a href="">Manage products</a></li>
+              <li class="p-1 list-group-item border-0"><a href="">Managing producers</a></li>
+              <li class="p-1 list-group-item border-0"><a href="">Manage relay points</a></li>
+            </ul>
           </ul>
         </div>
-        <div class="col">
-          <h3 class="border-bottom border-secondary pb-2 pt-3 mb-4">Quick start</h3>
-          <p></p>
+        <div class="col text-justify">
+          <h1 class="pb-2 pt-3 mb-4 display-3 text-center">How to use the application</h1>
+          <p>This Newworld application was developed as part of a personal project supervised for a period of 2 years within the BTS Informatique Dominique VILLARS of GAP.</p>
+          <p>This one was designed on the QT-Creator software and allows to moderate new arrivals on the site such as producers, departments or products.</p>
+          <div class="row text-center text-light">
+            <a class="col-sm bg-success m-1 p-4 text-decoration-none" href=""><div class="col-sm m-1 p-4">
+              <p class="m-4">Quick Start</p>
+            </div></a>
+            <a class="col-sm bg-info m-1 p-4 text-decoration-none" href=""><div class="col-sm m-1 p-4">
+              <p class="m-4">Moderation</p>
+            </div></a>
+            <a class="col-sm bg-warning m-1 p-4 text-decoration-none" href=""><div class="col-sm m-1 p-4">
+              <p class="m-4">Contact</p>
+            </div></a>
+          </div>
         </div>
       </div>
     </section>

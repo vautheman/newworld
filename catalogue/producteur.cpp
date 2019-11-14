@@ -1,24 +1,18 @@
 #include "producteur.h"
 
-Producteur::Producteur(QString nomEnt, QString activite, QString adresse, QString pays, QString ville, QString cp)
+Producteur::Producteur(QString nomEnt, QString activite, QString adresse)
 {
-    nomEnt = prodNomEnt;
-    activite = prodActivite;
-    adresse = prodAdresse;
-    pays = prodPays;
-    ville = prodVille;
-    cp = prodCP;
+    prodNomEnt = nomEnt;
+    prodActivite = activite;
+    prodAdresse = adresse;
 }
 
-QString Producteur::versChaine()
+QString Producteur::versChaineProducteur()
 {
     QString chaine;
-    chaine += "Entreprise : " + prodNomEnt;
-    chaine += "Activité : " + prodActivite;
-    chaine += "Adresse : " + prodAdresse;
-    chaine += "Pays : " + prodPays;
-    chaine += "Ville : " + prodVille;
-    chaine += "CP : " + prodCP;
+    chaine += prodNomEnt + ", ";
+    chaine += prodActivite +", ";
+    chaine += prodAdresse;
 
     return chaine;
 }

@@ -18,6 +18,8 @@ public:
     Client();
     // Constructeur qui va créer les clients
     Client(QString nom, QString prenom, QString email);
+
+    QString versChaineClient();
 };
 
 #endif // CLIENT_H

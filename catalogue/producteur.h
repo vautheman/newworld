@@ -2,30 +2,26 @@
 #define PRODUCTEUR_H
 
 #include <QString>
+#include <QVector>
 
 class Producteur
 {
     // Propriétés des producteurs
-
-    // Nom du de l'entreprise
+    // Nom de l'entreprise
     QString prodNomEnt;
     // Son activité
     QString prodActivite;
     // Son adresse
     QString prodAdresse;
-    // Son pays
-    QString prodPays;
-    // Sa ville
-    QString prodVille;
-    // Son code postal
-    QString prodCP;
+    // Les points relai qu'il a chosit
+    QVector<Producteur> sesPointsRelais;
 public:
     Producteur();
     // Constructeur qui va créer les producteurs
-    Producteur(QString nomEnt, QString activite, QString adresse, QString pays, QString ville, QString cp);
+    Producteur(QString nomEnt, QString activite, QString adresse, QString);
 
     // Methode versChaine des producteurs
-    QString versChaine();
+    QString versChaineProducteur();
 };
 
 #endif // PRODUCTEUR_H

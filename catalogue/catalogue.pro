@@ -1,4 +1,5 @@
 QT -= gui
+QT += core sql
 
 CONFIG += c++11 console
 CONFIG -= app_bundle
@@ -20,7 +21,9 @@ SOURCES += \
     client.cpp \
     rayon.cpp \
     typeproduit.cpp \
-    produit.cpp
+    produit.cpp \
+    passerelle.cpp \
+    pointrelai.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -32,4 +35,6 @@ HEADERS += \
     client.h \
     rayon.h \
     typeproduit.h \
-    produit.h
+    produit.h \
+    passerelle.h \
+    pointrelai.h
