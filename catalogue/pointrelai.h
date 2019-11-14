@@ -3,9 +3,8 @@
 #include <QString>
 
 #include "client.h"
-#include "producteur.h"
 
-class PointRelai:public Client, Producteur
+class PointRelai:public Client
 {
 private:
     // Propriété du point relai
@@ -16,8 +15,7 @@ private:
 public:
     PointRelai();
     // Constructeur du point relai
-    //PointRelai(QString nomDuClient, QString prenomDuClient, QString mailDuClient, QString pointRelaiNom, QString pointRelaiAdresse);
-    PointRelai(QString pointRelaiNom, QString pointRelaiAdresse);
+    PointRelai(QString nomDuClient, QString prenomDuClient, QString mailDuClient, QString pointRelaiNom, QString pointRelaiAdresse);
 
     // Fonction qui retourne les points relais
     QString versChainePointRelai();

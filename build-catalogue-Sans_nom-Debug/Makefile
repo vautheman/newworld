@@ -51,7 +51,6 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../catalogue/main.cpp \
-		../catalogue/producteur.cpp \
 		../catalogue/client.cpp \
 		../catalogue/rayon.cpp \
 		../catalogue/typeproduit.cpp \
@@ -59,7 +58,6 @@ SOURCES       = ../catalogue/main.cpp \
 		../catalogue/passerelle.cpp \
 		../catalogue/pointrelai.cpp 
 OBJECTS       = main.o \
-		producteur.o \
 		client.o \
 		rayon.o \
 		typeproduit.o \
@@ -142,14 +140,12 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		../catalogue/catalogue.pro ../catalogue/producteur.h \
-		../catalogue/client.h \
+		../catalogue/catalogue.pro ../catalogue/client.h \
 		../catalogue/rayon.h \
 		../catalogue/typeproduit.h \
 		../catalogue/produit.h \
 		../catalogue/passerelle.h \
 		../catalogue/pointrelai.h ../catalogue/main.cpp \
-		../catalogue/producteur.cpp \
 		../catalogue/client.cpp \
 		../catalogue/rayon.cpp \
 		../catalogue/typeproduit.cpp \
@@ -341,8 +337,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../catalogue/producteur.h ../catalogue/client.h ../catalogue/rayon.h ../catalogue/typeproduit.h ../catalogue/produit.h ../catalogue/passerelle.h ../catalogue/pointrelai.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../catalogue/main.cpp ../catalogue/producteur.cpp ../catalogue/client.cpp ../catalogue/rayon.cpp ../catalogue/typeproduit.cpp ../catalogue/produit.cpp ../catalogue/passerelle.cpp ../catalogue/pointrelai.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../catalogue/client.h ../catalogue/rayon.h ../catalogue/typeproduit.h ../catalogue/produit.h ../catalogue/passerelle.h ../catalogue/pointrelai.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../catalogue/main.cpp ../catalogue/client.cpp ../catalogue/rayon.cpp ../catalogue/typeproduit.cpp ../catalogue/produit.cpp ../catalogue/passerelle.cpp ../catalogue/pointrelai.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -393,19 +389,14 @@ compiler_clean: compiler_moc_predefs_clean
 main.o: ../catalogue/main.cpp ../catalogue/passerelle.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../catalogue/main.cpp
 
-producteur.o: ../catalogue/producteur.cpp ../catalogue/producteur.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o producteur.o ../catalogue/producteur.cpp
-
 client.o: ../catalogue/client.cpp ../catalogue/client.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o client.o ../catalogue/client.cpp
 
-rayon.o: ../catalogue/rayon.cpp ../catalogue/rayon.h \
-		../catalogue/producteur.h
+rayon.o: ../catalogue/rayon.cpp ../catalogue/rayon.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rayon.o ../catalogue/rayon.cpp
 
 typeproduit.o: ../catalogue/typeproduit.cpp ../catalogue/typeproduit.h \
-		../catalogue/rayon.h \
-		../catalogue/producteur.h
+		../catalogue/rayon.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o typeproduit.o ../catalogue/typeproduit.cpp
 
 produit.o: ../catalogue/produit.cpp ../catalogue/produit.h

@@ -17,7 +17,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    producteur.cpp \
     client.cpp \
     rayon.cpp \
     typeproduit.cpp \
@@ -31,7 +30,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    producteur.h \
     client.h \
     rayon.h \
     typeproduit.h \

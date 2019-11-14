@@ -7,7 +7,6 @@ class Passerelle
 public:
     Passerelle();
     void chargerLesClients();
-    void chargerLesPointsRelais();
 };
 
 #endif // PASSERELLE_H
