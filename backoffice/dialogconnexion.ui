@@ -26,7 +26,7 @@
     <item row="0" column="0">
      <widget class="QWidget" name="widget_2" native="true">
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(58, 76, 100);
+       <string notr="true">background-color: rgb(52, 58, 64);
 color: rgb(255, 255, 255);</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
@@ -59,6 +59,9 @@ color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>Contact Administrator</string>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -154,7 +157,7 @@ color: rgb(255, 255, 255);</string>
       <item>
        <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Log-in&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;LOGIN FORM&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -167,7 +170,7 @@ color: rgb(255, 255, 255);</string>
          </size>
         </property>
         <property name="text">
-         <string>Username</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;E-MAIL&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -199,7 +202,7 @@ color: rgb(255, 255, 255);</string>
          </size>
         </property>
         <property name="text">
-         <string>Password</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;PASSWORD&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -236,7 +239,7 @@ color: rgb(255, 255, 255);</string>
         <item>
          <widget class="QPushButton" name="pushButtonConnection">
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(58, 76, 100);
+           <string notr="true">background-color: rgb(52, 58, 64);
 color: rgb(255, 255, 255);</string>
           </property>
           <property name="text">

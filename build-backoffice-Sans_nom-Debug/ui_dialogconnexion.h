@@ -62,7 +62,7 @@ public:
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         widget_2 = new QWidget(widget);
         widget_2->setObjectName(QStringLiteral("widget_2"));
-        widget_2->setStyleSheet(QLatin1String("background-color: rgb(58, 76, 100);\n"
+        widget_2->setStyleSheet(QLatin1String("background-color: rgb(52, 58, 64);\n"
 "color: rgb(255, 255, 255);"));
         gridLayout_4 = new QGridLayout(widget_2);
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
@@ -76,6 +76,7 @@ public:
         pushButton = new QPushButton(widget_2);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setMaximumSize(QSize(170, 16777215));
+        pushButton->setAutoDefault(false);
 
         gridLayout_4->addWidget(pushButton, 3, 1, 1, 1);
 
@@ -151,7 +152,7 @@ public:
         horizontalLayout->setContentsMargins(-1, 20, -1, -1);
         pushButtonConnection = new QPushButton(widget);
         pushButtonConnection->setObjectName(QStringLiteral("pushButtonConnection"));
-        pushButtonConnection->setStyleSheet(QLatin1String("background-color: rgb(58, 76, 100);\n"
+        pushButtonConnection->setStyleSheet(QLatin1String("background-color: rgb(52, 58, 64);\n"
 "color: rgb(255, 255, 255);"));
 
         horizontalLayout->addWidget(pushButtonConnection);
@@ -190,9 +191,9 @@ public:
         label_2->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p><span style=\" font-size:14pt;\">Backoffice Newworld</span></p></body></html>", nullptr));
         pushButton->setText(QApplication::translate("DialogConnexion", "Contact Administrator", nullptr));
         label_3->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p>Welcome to the backoffice<br> application. This is where you will<br>be able to moderate and administer<br>the newworld website</p></body></html>", nullptr));
-        label_4->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt;\">Log-in</span></p></body></html>", nullptr));
-        labelLogin->setText(QApplication::translate("DialogConnexion", "Username", nullptr));
-        labelPassword->setText(QApplication::translate("DialogConnexion", "Password", nullptr));
+        label_4->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\">LOGIN FORM</span></p></body></html>", nullptr));
+        labelLogin->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p><span style=\" font-size:9pt;\">E-MAIL</span></p></body></html>", nullptr));
+        labelPassword->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p><span style=\" font-size:9pt;\">PASSWORD</span></p></body></html>", nullptr));
         pushButtonConnection->setText(QApplication::translate("DialogConnexion", "LOGIN", nullptr));
         pushButton_2->setText(QApplication::translate("DialogConnexion", "CANCEL", nullptr));
         label_5->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p align=\"right\"><span style=\" font-size:7pt;\">Designed by AUTHEMAN Victor</span></p></body></html>", nullptr));

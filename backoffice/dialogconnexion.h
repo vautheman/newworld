@@ -2,6 +2,7 @@
 #define DIALOGCONNEXION_H
 
 #include <QDialog>
+#include "backoffice.h"
 
 namespace Ui {
 class DialogConnexion;
@@ -17,6 +18,8 @@ public:
 
 private slots:
     void on_pushButtonConnection_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::DialogConnexion *ui;
