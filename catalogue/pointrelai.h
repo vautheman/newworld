@@ -15,7 +15,7 @@ private:
 public:
     PointRelai();
     // Constructeur du point relai
-    PointRelai(QString nomDuClient, QString prenomDuClient, QString mailDuClient, QString pointRelaiNom, QString pointRelaiAdresse);
+    PointRelai(QString pointRelaiNom, QString pointRelaiAdresse);
 
     // Fonction qui retourne les points relais
     QString versChainePointRelai();

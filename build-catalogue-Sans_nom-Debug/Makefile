@@ -56,14 +56,18 @@ SOURCES       = ../catalogue/main.cpp \
 		../catalogue/typeproduit.cpp \
 		../catalogue/produit.cpp \
 		../catalogue/passerelle.cpp \
-		../catalogue/pointrelai.cpp 
+		../catalogue/pointrelai.cpp \
+		../catalogue/producteur.cpp \
+		../catalogue/pdf.cpp 
 OBJECTS       = main.o \
 		client.o \
 		rayon.o \
 		typeproduit.o \
 		produit.o \
 		passerelle.o \
-		pointrelai.o
+		pointrelai.o \
+		producteur.o \
+		pdf.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -145,13 +149,17 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../catalogue/typeproduit.h \
 		../catalogue/produit.h \
 		../catalogue/passerelle.h \
-		../catalogue/pointrelai.h ../catalogue/main.cpp \
+		../catalogue/pointrelai.h \
+		../catalogue/producteur.h \
+		../catalogue/pdf.h ../catalogue/main.cpp \
 		../catalogue/client.cpp \
 		../catalogue/rayon.cpp \
 		../catalogue/typeproduit.cpp \
 		../catalogue/produit.cpp \
 		../catalogue/passerelle.cpp \
-		../catalogue/pointrelai.cpp
+		../catalogue/pointrelai.cpp \
+		../catalogue/producteur.cpp \
+		../catalogue/pdf.cpp
 QMAKE_TARGET  = catalogue
 DESTDIR       = 
 TARGET        = catalogue
@@ -337,8 +345,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../catalogue/client.h ../catalogue/rayon.h ../catalogue/typeproduit.h ../catalogue/produit.h ../catalogue/passerelle.h ../catalogue/pointrelai.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../catalogue/main.cpp ../catalogue/client.cpp ../catalogue/rayon.cpp ../catalogue/typeproduit.cpp ../catalogue/produit.cpp ../catalogue/passerelle.cpp ../catalogue/pointrelai.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../catalogue/client.h ../catalogue/rayon.h ../catalogue/typeproduit.h ../catalogue/produit.h ../catalogue/passerelle.h ../catalogue/pointrelai.h ../catalogue/producteur.h ../catalogue/pdf.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../catalogue/main.cpp ../catalogue/client.cpp ../catalogue/rayon.cpp ../catalogue/typeproduit.cpp ../catalogue/produit.cpp ../catalogue/passerelle.cpp ../catalogue/pointrelai.cpp ../catalogue/producteur.cpp ../catalogue/pdf.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -386,17 +394,27 @@ compiler_clean: compiler_moc_predefs_clean
 
 ####### Compile
 
-main.o: ../catalogue/main.cpp ../catalogue/passerelle.h
+main.o: ../catalogue/main.cpp ../catalogue/passerelle.h \
+		../catalogue/client.h \
+		../catalogue/pointrelai.h \
+		../catalogue/producteur.h \
+		../catalogue/produit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../catalogue/main.cpp
 
 client.o: ../catalogue/client.cpp ../catalogue/client.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o client.o ../catalogue/client.cpp
 
-rayon.o: ../catalogue/rayon.cpp ../catalogue/rayon.h
+rayon.o: ../catalogue/rayon.cpp ../catalogue/rayon.h \
+		../catalogue/producteur.h \
+		../catalogue/pointrelai.h \
+		../catalogue/client.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rayon.o ../catalogue/rayon.cpp
 
 typeproduit.o: ../catalogue/typeproduit.cpp ../catalogue/typeproduit.h \
-		../catalogue/rayon.h
+		../catalogue/rayon.h \
+		../catalogue/producteur.h \
+		../catalogue/pointrelai.h \
+		../catalogue/client.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o typeproduit.o ../catalogue/typeproduit.cpp
 
 produit.o: ../catalogue/produit.cpp ../catalogue/produit.h
@@ -404,12 +422,27 @@ produit.o: ../catalogue/produit.cpp ../catalogue/produit.h
 
 passerelle.o: ../catalogue/passerelle.cpp ../catalogue/passerelle.h \
 		../catalogue/client.h \
-		../catalogue/pointrelai.h
+		../catalogue/pointrelai.h \
+		../catalogue/producteur.h \
+		../catalogue/produit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o passerelle.o ../catalogue/passerelle.cpp
 
 pointrelai.o: ../catalogue/pointrelai.cpp ../catalogue/pointrelai.h \
 		../catalogue/client.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pointrelai.o ../catalogue/pointrelai.cpp
+
+producteur.o: ../catalogue/producteur.cpp ../catalogue/producteur.h \
+		../catalogue/pointrelai.h \
+		../catalogue/client.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o producteur.o ../catalogue/producteur.cpp
+
+pdf.o: ../catalogue/pdf.cpp ../catalogue/pdf.h \
+		../catalogue/passerelle.h \
+		../catalogue/client.h \
+		../catalogue/pointrelai.h \
+		../catalogue/producteur.h \
+		../catalogue/produit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pdf.o ../catalogue/pdf.cpp
 
 ####### Install
 

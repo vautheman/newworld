@@ -1,7 +1,7 @@
 QT -= gui
 QT += core sql
 
-CONFIG += c++11 console
+CONFIG += c++11 console printsupport
 CONFIG -= app_bundle
 
 # The following define makes your compiler emit warnings if you use
@@ -22,7 +22,9 @@ SOURCES += \
     typeproduit.cpp \
     produit.cpp \
     passerelle.cpp \
-    pointrelai.cpp
+    pointrelai.cpp \
+    producteur.cpp \
+    pdf.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -35,4 +37,6 @@ HEADERS += \
     typeproduit.h \
     produit.h \
     passerelle.h \
-    pointrelai.h
+    pointrelai.h \
+    producteur.h \
+    pdf.h

@@ -11,6 +11,7 @@ Client::Client(QString nom, QString prenom, QString email)
     cliNom = nom;
     cliPrenom = prenom;
     cliEmail = email;
+    qDebug()<<cliNom + ", " + cliPrenom + ", " + cliEmail;
 }
 
 QString Client::versChaineClient()

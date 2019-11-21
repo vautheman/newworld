@@ -3,6 +3,9 @@
 
 #include <QString>
 
+///
+/// \brief The Produit class
+/// La classe Produit permet de récupérer toutes les informations des ses derniers et de les stockers dans des paramètres
 class Produit
 {
     // Propriétés des produits
@@ -22,6 +25,8 @@ public:
     Produit();
     // Constructeur qui récupère les produits des producteurs
     Produit(QString libelle, QString description, QString image, double prixUnitaire, int quantite);
+
+    QString versChaineProduit();
 };
 
 #endif // PRODUIT_H

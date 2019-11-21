@@ -1,15 +1,15 @@
 #include "pointrelai.h"
-
+#include <QDebug>
 PointRelai::PointRelai()
 {
 
 }
 
-PointRelai::PointRelai(QString nomDuClient, QString prenomDuClient, QString mailDuClient, QString pointRelaiNom, QString pointRelaiAdresse):
-    Client(nomDuClient, prenomDuClient, mailDuClient)
+PointRelai::PointRelai(QString pointRelaiNom, QString pointRelaiAdresse)
 {
-    pRNom = pointRelaiNom;
-    pRAdresse = pointRelaiAdresse;
+    this->pRNom = pointRelaiNom;
+    this->pRAdresse = pointRelaiAdresse;
+    qDebug()<<pRNom + ", " + pRAdresse;
 }
 
 QString PointRelai::versChainePointRelai()
