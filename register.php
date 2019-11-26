@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php include 'assets/include/connectBDD.php'; ?>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -33,6 +34,22 @@
               <input required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="client_verifPw()" id="cliPassword" type="password" name="password" class="form-control" placeholder="Choisissez un mot de passe">
               <!-- Affiche message d'erreur -->
               <small id="cliErreurMsgPw" class="text-danger form-text text-muted">Erreur : Le mot de passe doit contenir au moins 8 caractères, une majuscule et une minuscule</small>
+
+              <select class="form-control mt-2" name="">
+                <?php
+                $reqSelectTypeSign = $bdd->prepare("select * from role");
+                $reqSelectTypeSign->execute();
+                while($curSelect = $reqSelectTypeSign->fetch())
+                {
+                  if($curSelect["roleLib"] != "administrateur")
+                  {
+                  ?>
+                    <option value="<?php echo $curSelect["roleId"]; ?>"><?php echo $curSelect['roleLib']; ?></option>
+                  <?php
+                  }
+                }
+                ?>
+              </select>
               <div class="d-flex mt-4">
                 <div><input onchange="rejoindre()" type="checkbox" id="check1" class="mr-2" required></div>
                 <div class="p12">
@@ -46,7 +63,7 @@
                 </div>
               </div>
               <div class="btn-connexion mt-4">
-                <button id="btnRejoindre" type="submit" class="btn w-100 btnRejoindre btn-dark" value="">Rejoindre newWorld</button>
+                <button id="btnRejoindre" disabled type="submit" class="btn w-100 btnRejoindre btn-dark" value="">Rejoindre newWorld</button>
               </div>
             </form>
           </div>
@@ -58,4 +75,5 @@
 
     </footer>
   </body>
+  <script src="assets/js/inputControl.js" charset="utf-8"></script>
 </html>
