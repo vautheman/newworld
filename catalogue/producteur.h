@@ -7,7 +7,7 @@
 ///
 /// \brief The Producteur class
 /// La classe producteur permet de stocker les informations de ce dernier dans des paramètres
-class Producteur:public PointRelai
+class Producteur
 {
 private:
     // L'identifiant du producteur

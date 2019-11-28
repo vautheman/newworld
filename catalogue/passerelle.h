@@ -45,7 +45,9 @@ public:
     /// \return Vecteur de produit
     /// Le vecteur chargerLesProduits permet de rechercher les produits dans la base de données en fonction de l'identifiant du point relai et du producteur rentrés en paramètre.
     /// Un constructeur de la classe Produit va aussi permettre d'ajouter un produit ainsi que toutes les informations le concernant.
-    static QVector<Produit> chargerLesProduits(int noPointRelai, int noProducteur);
+    QVector<Produit> chargerLesProduits(int noPointRelai, int noProducteur);
+
+
 };
 
 #endif // PASSERELLE_H

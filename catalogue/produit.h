@@ -8,6 +8,7 @@
 /// La classe Produit permet de récupérer toutes les informations des ses derniers et de les stockers dans des paramètres
 class Produit
 {
+private:
     // Propriétés des produits
     // Libellé du produit
     QString produitLib;
@@ -27,6 +28,8 @@ public:
     Produit(QString libelle, QString description, QString image, double prixUnitaire, int quantite);
 
     QString versChaineProduit();
+
+    QString getProduitLib() const;
 };
 
 #endif // PRODUIT_H

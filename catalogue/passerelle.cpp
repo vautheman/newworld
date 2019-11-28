@@ -1,6 +1,7 @@
 #include "passerelle.h"
 #include "client.h"
 #include "pointrelai.h"
+#include "pdf.h"
 
 #include <QtSql>
 #include <QDebug>
@@ -39,7 +40,7 @@ QVector<Client> Passerelle::chargerLesClients()
             QString cliEmail = reqClient.value("userEmail").toString();
 
             // On appelle le constructeur du client
-            Client monClient(cliNom, cliPrenom, cliEmail);
+            Client monClient(cliId, cliNom, cliPrenom, cliEmail);
             //QString chaineDuClient=monClient.versChaineClient();
             resultat.append(monClient);
             Passerelle maPasserelle;
@@ -55,7 +56,7 @@ QVector<Client> Passerelle::chargerLesClients()
 /// Les points relais récupérés correspondent à la sélection d'un client grâce à son identifiant rentré en paramètre.
 QVector<PointRelai> Passerelle::chargerLesPointsRelaisDuClient(int noClient)
 {
-    //qDebug()<<"QVector<PointRelai> Passerelle::chargerLesPointsRelaisDuClient(int noClient)";
+    qDebug()<<"QVector<PointRelai> Passerelle::chargerLesPointsRelaisDuClient(int noClient)";
     QVector<PointRelai> resultat;
     // Récupération des points relais que le client a ajouté
     QSqlQuery reqPointRelai;
@@ -70,13 +71,11 @@ QVector<PointRelai> Passerelle::chargerLesPointsRelaisDuClient(int noClient)
         QString pRAdresse = reqPointRelai.value("relaiPays").toString() + ", " + reqPointRelai.value("relaiVille").toString() + ", " + reqPointRelai.value("relaiCP").toString() + ", " + reqPointRelai.value("relaiAdresse").toString();
 
         PointRelai monPointRelai(pRNom, pRAdresse);
+        monPointRelai.setProducteurs(Passerelle::chargerLesProducteursDuPointRelai(pRId));
         resultat.append(monPointRelai);
         //QString chaineDuPointRelai = monPointRelai.versChainePointRelai();
         //qDebug()<<chaineDuPointRelai;
-        Passerelle maPasserelle;
-        maPasserelle.chargerLesProducteursDuPointRelai(pRId);
     }
-
     return resultat;
 }
 
@@ -157,3 +156,5 @@ QVector<Produit> Passerelle::chargerLesProduits(int noPointRelai, int noProducte
     }
     return resultat;
 }
+
+
