@@ -2,6 +2,7 @@
 #define PRODUIT_H
 
 #include <QString>
+#include <QVector>
 
 ///
 /// \brief The Produit class
@@ -21,7 +22,6 @@ private:
     // Quantite de produit restant
     int produitQuantite;
 
-
 public:
     Produit();
     // Constructeur qui récupère les produits des producteurs
@@ -30,6 +30,7 @@ public:
     QString versChaineProduit();
 
     QString getProduitLib() const;
+
 };
 
 #endif // PRODUIT_H

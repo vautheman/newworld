@@ -16,15 +16,13 @@ PointRelai::PointRelai(QString pointRelaiNom, QString pointRelaiAdresse)
 QString PointRelai::versChainePointRelai()
 {
     QString chaine;
-    chaine += "You have chosen the relay points :";
-    chaine += "<p>" + pRNom + "</p>";
-    chaine += "<h3>" + pRAdresse + "</h3>";
-    chaine+="<h1>Liste des producteurs</h1><ul>";
+    chaine += "<h4>You have chosen the relay points :</h4>";
+    chaine += "<p style='margin-left: 20px;'>" + pRNom + " : " + pRAdresse + "</p>";
+    chaine+="<h4>Liste des producteurs</h4>";
     for(int noProd=0;noProd<lesProducteurs.size();noProd++)
     {
-        chaine+="<li>"+lesProducteurs[noProd].versChaineProducteurs()+"</li>";
+        chaine+=lesProducteurs[noProd].versChaineProducteurs();
     }
-    chaine+="</ul>";
     //j'obtiens les rayons
     //pour chaque rayon
     //j'affiche les produits du rayon

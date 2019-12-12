@@ -1,8 +1,10 @@
+#pragma once
 #ifndef PRODUCTEUR_H
 #define PRODUCTEUR_H
 
 #include <QString>
 #include "pointrelai.h"
+#include "produit.h"
 
 ///
 /// \brief The Producteur class
@@ -16,6 +18,9 @@ private:
     QString producteurNomSociete;
     // L'adresse du producteur
     QString producteurAdresse;
+    // Vecteur de produit
+    QVector<Produit> lesProduits;
+
 public:
     // Déclaration du constructeur vide
     Producteur();
@@ -24,6 +29,8 @@ public:
 
     // Fonction qui permet l'affichage des producteurs
     QString versChaineProducteurs();
+
+    void setProduits(QVector<Produit> sesProduits);
 };
 
 #endif // PRODUCTEUR_H

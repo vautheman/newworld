@@ -1,4 +1,5 @@
-#include "producteur.h"
+﻿#include "producteur.h"
+#include "produit.h"
 #include <QDebug>
 
 Producteur::Producteur()
@@ -18,13 +19,20 @@ QString Producteur::versChaineProducteurs()
 {
     QString chaine;
 
-    chaine += "<p>" + producteurNomSociete + "</p>";
-    chaine += "<p>" + producteurAdresse + "</p>";
-
-    PointRelai lePointRelai;
-    for(int noProd=0;noProd<lePointRelai.lesProducteurs.size();noProd++)
+    chaine += "<p><b>" + producteurNomSociete + "</b> : " + producteurAdresse + "</p><br>";
+    Produit monProduit;
+    qDebug()<<"La taille des produits est : "<<lesProduits.size();
+    chaine +="<table>";
+    for(int noProduit=0;noProduit<lesProduits.size();noProduit++)
     {
-        chaine+="<li>"+lePointRelai.lesProducteurs[noProd].versChaineProducteurs()+"</li>";
+        chaine+=lesProduits[noProduit].versChaineProduit();
     }
+    chaine += "</table>";
     return chaine;
 }
+
+void Producteur::setProduits(QVector<Produit> sesProduits)
+{
+    this->lesProduits = sesProduits;
+}
+

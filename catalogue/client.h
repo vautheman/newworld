@@ -22,13 +22,19 @@ private:
     QString cliPrenom;
     // Email
     QString cliEmail;
+    // Rue
+    QString cliRue;
+    // cp
+    QString cliCP;
+    // ville
+    QString cliVille;
 
     QVector <PointRelai> sesPointsRelais;
 
 public:
     Client();
     // Constructeur qui va créer les clients
-    Client(int id, QString nom, QString prenom, QString email);
+    Client(int id, QString nom, QString prenom, QString email, QString rue, QString cp, QString ville);
 
     QString versChaineClient();
     int getCliId() const;
