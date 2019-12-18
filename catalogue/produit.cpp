@@ -1,9 +1,15 @@
 #include "produit.h"
+#include "producteur.h"
 #include <QDebug>
 
 ///
 /// \brief Produit::Produit
 /// Déclaration du constructeur vide
+QString Produit::getProduitLib() const
+{
+    return produitLib;
+}
+
 Produit::Produit()
 {
 
@@ -25,18 +31,28 @@ Produit::Produit(QString libelle, QString description, QString image, double pri
     this->produitPU = prixUnitaire;
     this->produitQuantite = quantite;
 
-    qDebug()<<produitDesc;
+    qDebug()<<produitLib;
 }
 
 QString Produit::versChaineProduit()
 {
     QString chaine;
+
+    qDebug()<<"C'est le produit : "<<getProduitLib();
     QString prix = QString::number(produitPU);
     QString quantite = QString::number(produitQuantite);
-    chaine += "<img src='" + produitImage + "'></img>";
+    qDebug()<<prix;
+    chaine += "<td>";
+    chaine += "<img src='../assets/images/" + produitImage + "'></img>";
+    chaine += "<div>";
     chaine += "<h3>" + produitLib + "</h3>";
     chaine += "<p>" + produitDesc + "</p>";
     chaine += "<h4>" + prix + " €</h4>";
     chaine += "<h4>Plus que : " + quantite + " produit disponible</h4>";
+    chaine += "</div>";
+    chaine += "</td>";
+
+    return chaine;
 }
+
 

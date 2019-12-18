@@ -1,7 +1,6 @@
-QT -= gui
-QT += core sql
+QT += core sql gui printsupport
 
-CONFIG += c++11 console printsupport
+CONFIG += c++11 console
 CONFIG -= app_bundle
 
 # The following define makes your compiler emit warnings if you use

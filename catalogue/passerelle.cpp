@@ -1,6 +1,7 @@
 #include "passerelle.h"
 #include "client.h"
 #include "pointrelai.h"
+#include "pdf.h"
 
 #include <QtSql>
 #include <QDebug>
@@ -37,9 +38,12 @@ QVector<Client> Passerelle::chargerLesClients()
             QString cliNom = reqClient.value("userNom").toString();
             QString cliPrenom = reqClient.value("userPrenom").toString();
             QString cliEmail = reqClient.value("userEmail").toString();
+            QString cliRue = reqClient.value("cliRue").toString();
+            QString cliCP = reqClient.value("cliCP").toString();
+            QString cliVille = reqClient.value("cliVille").toString();
 
             // On appelle le constructeur du client
-            Client monClient(cliNom, cliPrenom, cliEmail);
+            Client monClient(cliId, cliNom, cliPrenom, cliEmail, cliRue, cliCP, cliVille);
             //QString chaineDuClient=monClient.versChaineClient();
             resultat.append(monClient);
             Passerelle maPasserelle;
@@ -55,7 +59,7 @@ QVector<Client> Passerelle::chargerLesClients()
 /// Les points relais récupérés correspondent à la sélection d'un client grâce à son identifiant rentré en paramètre.
 QVector<PointRelai> Passerelle::chargerLesPointsRelaisDuClient(int noClient)
 {
-    //qDebug()<<"QVector<PointRelai> Passerelle::chargerLesPointsRelaisDuClient(int noClient)";
+    qDebug()<<"QVector<PointRelai> Passerelle::chargerLesPointsRelaisDuClient(int noClient)";
     QVector<PointRelai> resultat;
     // Récupération des points relais que le client a ajouté
     QSqlQuery reqPointRelai;
@@ -70,13 +74,11 @@ QVector<PointRelai> Passerelle::chargerLesPointsRelaisDuClient(int noClient)
         QString pRAdresse = reqPointRelai.value("relaiPays").toString() + ", " + reqPointRelai.value("relaiVille").toString() + ", " + reqPointRelai.value("relaiCP").toString() + ", " + reqPointRelai.value("relaiAdresse").toString();
 
         PointRelai monPointRelai(pRNom, pRAdresse);
+        monPointRelai.setProducteurs(Passerelle::chargerLesProducteursDuPointRelai(pRId));
         resultat.append(monPointRelai);
         //QString chaineDuPointRelai = monPointRelai.versChainePointRelai();
         //qDebug()<<chaineDuPointRelai;
-        Passerelle maPasserelle;
-        maPasserelle.chargerLesProducteursDuPointRelai(pRId);
     }
-
     return resultat;
 }
 
@@ -106,14 +108,15 @@ QVector<Producteur> Passerelle::chargerLesProducteursDuPointRelai(int noPointRel
         QString producteurAdresse = reqProducteur.value("prodPays").toString() + ", " + reqProducteur.value("prodCP").toString() + ", " + reqProducteur.value("prodVille").toString() + ", " + reqProducteur.value("prodAdresse").toString();
 
         // On appelle le constructeur
-        Producteur monProducteur(producteurNomSociete, producteurAdresse);
+        Producteur monProducteur(producteurNomSociete, producteurAdresse); 
+
+        // On appelle la fonction qui récupère les produits
+        QVector<Produit> lesProduitsDuProducteur =Passerelle::chargerLesProduits(noPointRelai, producteurId);
+        monProducteur.setProduits(lesProduitsDuProducteur);
 
         // On ajoute les données dans le vecteur Producteur
         resultat.append(monProducteur);
 
-        // On appelle la fonction qui récupère les produits
-        Passerelle maPasserelle;
-        maPasserelle.chargerLesProduits(noPointRelai, producteurId);
     }
 
     return resultat;
@@ -133,7 +136,9 @@ QVector<Produit> Passerelle::chargerLesProduits(int noPointRelai, int noProducte
 
     // Récupération des produits dans la base de données
     QSqlQuery reqProduits;
-    reqProduits.prepare("select prodId, prodNomEnt, produitId, produitLib, produitDesc, produitImg, produitPU, produitQuantite from produits natural join choix natural join producteurs where relaiId = :relaiId and prodId = :prodId");
+
+    //QString texteReq=
+    reqProduits.prepare("select producteurs.prodId, prodNomEnt, produitId, produitLib, produitDesc, produitImg, produitPU, produitQuantite from producteurs inner join produits on produits.prodId=producteurs.prodId inner join choix on producteurs.prodId=choix.prodId inner join pointRelai on choix.relaiId=pointRelai.relaiId where pointRelai.relaiId = :relaiId and producteurs.prodId = :prodId");
     reqProduits.bindValue(":relaiId", noPointRelai);
     reqProduits.bindValue(":prodId", noProducteur);
     reqProduits.exec();
@@ -157,3 +162,5 @@ QVector<Produit> Passerelle::chargerLesProduits(int noPointRelai, int noProducte
     }
     return resultat;
 }
+
+

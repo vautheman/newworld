@@ -16,9 +16,9 @@ public:
     // Déclaration du constructeur de la classe Pdf
     Pdf(QString nomDocument);
     // Ecrit le contenu de la chaine caractères leTexte dans le document PDF
-    void ecrireTexte();
+    void ecrireTexte(QString leTexte);
     // Ferme le document
-    void fermer();
+    void imprimer();
 };
 
 #endif // PDF_H
