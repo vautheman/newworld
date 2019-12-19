@@ -412,26 +412,36 @@ main.o: ../catalogue/main.cpp ../catalogue/passerelle.h \
 		../catalogue/client.h \
 		../catalogue/pointrelai.h \
 		../catalogue/producteur.h \
-		../catalogue/produit.h
+		../catalogue/produit.h \
+		../catalogue/pdf.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../catalogue/main.cpp
 
-client.o: ../catalogue/client.cpp ../catalogue/client.h
+client.o: ../catalogue/client.cpp ../catalogue/client.h \
+		../catalogue/pointrelai.h \
+		../catalogue/producteur.h \
+		../catalogue/produit.h \
+		../catalogue/passerelle.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o client.o ../catalogue/client.cpp
 
 rayon.o: ../catalogue/rayon.cpp ../catalogue/rayon.h \
 		../catalogue/producteur.h \
 		../catalogue/pointrelai.h \
-		../catalogue/client.h
+		../catalogue/client.h \
+		../catalogue/produit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rayon.o ../catalogue/rayon.cpp
 
 typeproduit.o: ../catalogue/typeproduit.cpp ../catalogue/typeproduit.h \
 		../catalogue/rayon.h \
 		../catalogue/producteur.h \
 		../catalogue/pointrelai.h \
-		../catalogue/client.h
+		../catalogue/client.h \
+		../catalogue/produit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o typeproduit.o ../catalogue/typeproduit.cpp
 
-produit.o: ../catalogue/produit.cpp ../catalogue/produit.h
+produit.o: ../catalogue/produit.cpp ../catalogue/produit.h \
+		../catalogue/producteur.h \
+		../catalogue/pointrelai.h \
+		../catalogue/client.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o produit.o ../catalogue/produit.cpp
 
 passerelle.o: ../catalogue/passerelle.cpp ../catalogue/passerelle.h \
@@ -443,12 +453,16 @@ passerelle.o: ../catalogue/passerelle.cpp ../catalogue/passerelle.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o passerelle.o ../catalogue/passerelle.cpp
 
 pointrelai.o: ../catalogue/pointrelai.cpp ../catalogue/pointrelai.h \
-		../catalogue/client.h
+		../catalogue/client.h \
+		../catalogue/producteur.h \
+		../catalogue/produit.h \
+		../catalogue/passerelle.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pointrelai.o ../catalogue/pointrelai.cpp
 
 producteur.o: ../catalogue/producteur.cpp ../catalogue/producteur.h \
 		../catalogue/pointrelai.h \
-		../catalogue/client.h
+		../catalogue/client.h \
+		../catalogue/produit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o producteur.o ../catalogue/producteur.cpp
 
 pdf.o: ../catalogue/pdf.cpp ../catalogue/pdf.h \

@@ -13,24 +13,30 @@
   </head>
   <body>
     <a class="text-light btn btn-dark mt-4 ml-4" href="#">Retour</a>
-    <form class="form" action="index.html" method="post">
-      <label for="producteurEntName">Le nom de votre entreprise :</label>
-      <input type="text" name="producteurEntName" class="form-control" value="" id="producteurEntName" placeholder="ex: AgriBio">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <form class="form" action="index.html" method="post">
+            <label for="producteurEntName">Le nom de votre entreprise :</label>
+            <input type="text" name="producteurEntName" class="form-control" value="" id="producteurEntName" placeholder="ex: AgriBio">
 
-      <label for="producteurActivite">Votre activité :</label>
-      <select class="form-control" name="producteurActivite" id="producteurActivite">
-        <option value=""></option>
-      </select>
+            <label for="producteurActivite">Votre activité :</label>
+            <select class="form-control" name="producteurActivite" id="producteurActivite">
+              <option value=""></option>
+            </select>
 
-      <label for="producteurAdresse">Votre adresse :</label>
-      <input type="text" name="producteurAdresse" id="producteurAdresse" value="" class="form-control" placeholder="ex: lieu-dit ...">
+            <label for="producteurAdresse">Votre adresse :</label>
+            <input type="text" name="producteurAdresse" id="producteurAdresse" value="" class="form-control" placeholder="ex: lieu-dit ...">
 
-      <label for="producteurPays">Votre pays :</label>
-      <input type="text" name="producteurPays" value="" placeholder="ex: FRANCE" class="form-control">
+            <label for="producteurPays">Votre pays :</label>
+            <input type="text" name="producteurPays" value="" placeholder="ex: FRANCE" class="form-control">
 
-      <label for="producteurVille">Votre ville :</label>
-      <input type="text" name="producteurVille" class="form-control" value="" placeholder="ex: GAP">
-    </form>
+            <label for="producteurVille">Votre ville :</label>
+            <input type="text" name="producteurVille" class="form-control" value="" placeholder="ex: GAP">
+          </form>
+        </div>
+      </div>
+    </div>
 
     <footer class="container-fluid bg-dark mt-5" style="height: 250px;">
 
