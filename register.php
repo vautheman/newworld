@@ -11,8 +11,8 @@
     <script src="assets/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   </head>
-  <body>
-    <a class="text-light btn btn-dark mt-4 ml-4" href="#">Retour</a>
+  <body onload="verifPw(), verifMail(), verifMailConfirm()">
+    <a class="text-light btn btn-dark mt-4 ml-4" href="#">Return</a>
     <div class="container">
       <div class="row" style="margin-top: 50px;">
 
@@ -47,21 +47,21 @@
                     <div class="row mt-3">
                       <div class="col-lg">
                         <label for="userPassword" class="float-left text-dark"><small class="text-secondary text-uppercase">Password</small></label>
-                        <input required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="client_verifPw()" value="<?php echo $password; ?>" id="userPassword" type="password" name="userPassword" class="form-control" placeholder="Choose a password">
+                        <input required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="verifPw()" value="<?php echo $password; ?>" id="userPassword" type="password" name="userPassword" class="form-control" placeholder="Choose a password">
                         <!-- Affiche message d'erreur -->
-                        <small id="cliErreurMsgPw" class="text-danger form-text text-muted">Error: The password must contain at least 8 characters, one upper case and one lower case.</small>
+                        <small id="userErreurMsgPw" class="text-danger form-text text-muted">Error: The password must contain at least 8 characters, one upper case and one lower case.</small>
                       </div>
                       <div class="col-lg">
                         <label for="userPasswordConfirm" class="float-left text-dark"><small class="text-secondary text-uppercase">Confirm password</small></label>
-                        <input required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="client_verifPw()" value="" id="userPasswordConfirm" type="password" name="userPasswordConfirm" class="form-control" placeholder="Confirm your password">
+                        <input required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="verifPwConfirm()" value="" id="userPasswordConfirm" type="password" name="userPasswordConfirm" class="form-control" placeholder="Confirm your password">
                         <!-- Affiche message d'erreur -->
-                        <small id="cliErreurMsgPw" class="text-danger form-text text-muted">Error: Passwords are not identical</small>
+                        <small id="userErreurMsgPw" class="text-danger form-text text-muted">Error: Passwords are not identical</small>
                       </div>
                     </div>
 
                     <label for="userMail" class="float-left text-dark mt-3"><small class="text-secondary text-uppercase">E-Mail</small></label>
-                    <input required id="userMail" onchange="client_verifMail()" type="email" class="form-control" value="<?php echo $mail; ?>" name="userMail" placeholder="Your email address">
-                    <small id="cliErreurMsgMail" class="form-text text-muted">Enter a valid email!</small>
+                    <input required id="userMail" onchange="verifMail()" type="email" class="form-control" value="<?php echo $mail; ?>" name="userMail" placeholder="Your email address">
+                    <small id="userErreurMsgMail" class="form-text text-muted">Enter a valid email!</small>
 
                     <div class="row mt-3">
                       <div class="col">
@@ -122,8 +122,8 @@
 
                     <?php
                     // Ajout du producteur
-                    if(isset($_POST['userNom']), AND isset($_POST['userPrenom']) AND isset($_POST['userPassword']) AND isset($_POST['userPasswordConfirm']) AND isset($_POST['userMail']) AND isset($_POST['userTelFixe']) AND
-                    isset($_POST['prodNomEnt']) AND isset($_POST['prodActivite']) AND isset($_POST['prodAdresse']) AND isset($_POST['prodPays']), AND isset($_POST['prodCP']) AND isset($_POST['prodVille']) AND isset($_POST['prodSiren']))
+                    if(isset($_POST['userNom']) AND isset($_POST['userPrenom']) AND isset($_POST['userPassword']) AND isset($_POST['userPasswordConfirm']) AND isset($_POST['userMail']) AND isset($_POST['userTelFixe']) AND
+                    isset($_POST['prodNomEnt']) AND isset($_POST['prodActivite']) AND isset($_POST['prodAdresse']) AND isset($_POST['prodPays']) AND isset($_POST['prodCP']) AND isset($_POST['prodVille']) AND isset($_POST['prodSiren']))
                     {
                       $userNom = htmlspecialchars($_POST['userNom']);
                       $userPrenom = htmlspecialchars($_POST['userPrenom']);
@@ -145,7 +145,10 @@
                       $prodCP = htmlspecialchars($_POST['prodCP']);
                       $prodSiren = htmlspecialchars($prodSiren['prodSiren']);
 
-                      if(!empty($userNom) AND !empty($userPrenom) AND !empty($userEmail) AND !empty($userTelFixe) AND !empty($userTelPort) AND !empty($userPassword) AND !empty($userPasswordConfirm) AND !empty($prodNomEnt) AND !empty($prodActivite))
+		      if(!empty($userNom) AND !empty($userPrenom) AND !empty($userEmail) AND !empty($userTelFixe) AND !empty($userTelPort) AND !empty($userPassword) AND !empty($userPasswordConfirm) AND !empty($prodNomEnt) AND !empty($prodActivite) AND !empty($prodAdresse) AND !empty($prodPays) AND !empty($prodVille) AND !empty($prodCP) AND !empty($prodSiren))
+		      {
+
+		      } else echo "Tout les champs doivent être complétés";
                     }
                   }
                   ?>

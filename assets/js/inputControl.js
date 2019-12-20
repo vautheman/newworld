@@ -1,11 +1,11 @@
 // Fonction de vérification formulaire client
 // On déclare la fonction qui vérifie les mails
-function client_verifMail()
+function verifMail()
 {
   // Ca fonctionne
   // vérification email
-  var inputEmail = document.getElementById('cliEmail');
-  var erreurMsgMail = document.getElementById('cliErreurMsgMail');
+  var inputEmail = document.getElementById('userMail');
+  var erreurMsgMail = document.getElementById('userErreurMsgMail');
   if (inputEmail.value.indexOf("@") == -1 || inputEmail.value.indexOf(".") == -1) {
     erreurMsgMail.style.visibility="visible";
     inputEmail.classList.remove("is-valid");
@@ -18,11 +18,11 @@ function client_verifMail()
   }
 }
 
-function client_verifPw()
+function verifPw()
 {
   // Verification mot de passe
-  var pw1 = document.getElementById('cliPassword');
-  var erreurMsgPw = document.getElementById('cliErreurMsgPw');
+  var pw1 = document.getElementById('userPassword');
+  var erreurMsgPw = document.getElementById('userErreurMsgPw');
   // Pattern password
   var re = new RegExp('\\w+');
 
@@ -40,11 +40,11 @@ function client_verifPw()
   }
 }
 
-function client_verifPwConfirm()
+function verifPwConfirm()
 {
-  var pw1 = document.getElementById('cliPassword');
-  var pw2 = document.getElementById('cliPasswordConfirm');
-  var erreurMsgPwConfirm = document.getElementById('cliErreurMsgPwConfirm');
+  var pw1 = document.getElementById('userPassword');
+  var pw2 = document.getElementById('userPasswordConfirm');
+  var erreurMsgPwConfirm = document.getElementById('userErreurMsgPwConfirm');
   // correspondance des deux mots de passe
   if(pw1.value != pw2.value)
   {
