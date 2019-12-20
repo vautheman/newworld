@@ -18,6 +18,44 @@ function verifMail()
   }
 }
 
+function verifMailRegister()
+{
+  var registerEmail = document.getElementById('registerMail');
+  var registerErreurMsgMail = document.getElementById('registerErreurMsgMail');
+  if (registerEmail.value.indexOf("@") == -1 || registerEmail.value.indexOf(".") == -1) {
+    registerErreurMsgMail.style.visibility="visible";
+    registerEmail.classList.remove("is-valid");
+    registerEmail.classList.add("is-invalid");
+  }
+  else {
+    registerEmail.classList.remove("is-invalid");
+    registerEmail.classList.add("is-valid");
+    registerErreurMsgMail.style.visibility="hidden";
+  }
+}
+
+function verifPwRegister()
+{
+  // Verification mot de passe
+  var pw1 = document.getElementById('RegisterPassword');
+  var erreurMsgPw = document.getElementById('registerErreurMsgPw');
+  // Pattern password
+  var re = new RegExp('\\w+');
+
+  // taille du mot de passe
+  if(pw1.value.length < 8 && re.test && re.lastIndex == 0)
+  {
+    erreurMsgPw.style.visibility="visible";
+    pw1.classList.remove("is-valid");
+    pw1.classList.add("is-invalid");
+  }
+  else {
+    erreurMsgPw.style.visibility="hidden";
+    pw1.classList.remove("is-invalid");
+    pw1.classList.add("is-valid");
+  }
+}
+
 function verifPw()
 {
   // Verification mot de passe

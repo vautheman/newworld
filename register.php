@@ -11,17 +11,17 @@
     <script src="assets/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   </head>
-  <body onload="verifPw(), verifMail(), verifMailConfirm()">
+  <body onload="verifPw(), verifMail()">
     <a class="text-light btn btn-dark mt-4 ml-4" href="#">Return</a>
     <div class="container">
       <div class="row" style="margin-top: 50px;">
 
           <?php
-          if(isset($_POST['mail']) AND isset($_POST['password']) AND isset($_POST['role']))
+          if(isset($_POST['userMail']) AND isset($_POST['userPassword']) AND isset($_POST['userRole']))
           {
-            $mail = htmlspecialchars($_POST['mail']);
-            $password = $_POST['password'];
-            $role = htmlspecialchars($_POST['role']);
+            $mail = htmlspecialchars($_POST['userMail']);
+            $password = $_POST['userPassword'];
+            $role = htmlspecialchars($_POST['userRole']);
             if(!empty($mail) AND !empty($password) AND !empty($role))
             {
               ?>
@@ -55,7 +55,7 @@
                         <label for="userPasswordConfirm" class="float-left text-dark"><small class="text-secondary text-uppercase">Confirm password</small></label>
                         <input required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="verifPwConfirm()" value="" id="userPasswordConfirm" type="password" name="userPasswordConfirm" class="form-control" placeholder="Confirm your password">
                         <!-- Affiche message d'erreur -->
-                        <small id="userErreurMsgPw" class="text-danger form-text text-muted">Error: Passwords are not identical</small>
+                        <small id="userErreurMsgPwConfirm" class="text-danger form-text text-muted" style="visibility: hidden;">Error: Passwords are not identical</small>
                       </div>
                     </div>
 
@@ -88,7 +88,7 @@
                       <div class="col-lg">
                         <label for="prodActivite" class="float-left"><small class="text-secondary text-uppercase">Your activity</small></label>
                         <select class="form-control" name="prodActivite" id="prodActivite">
-
+                          <option value="ecommerce">ecommerce</option>
                         </select>
                       </div>
                     </div>
@@ -121,35 +121,7 @@
                     <input type="submit" class="btn btn-dark w-100 mt-5 p-3" value="LET'S GO !">
 
                     <?php
-                    // Ajout du producteur
-                    if(isset($_POST['userNom']) AND isset($_POST['userPrenom']) AND isset($_POST['userPassword']) AND isset($_POST['userPasswordConfirm']) AND isset($_POST['userMail']) AND isset($_POST['userTelFixe']) AND
-                    isset($_POST['prodNomEnt']) AND isset($_POST['prodActivite']) AND isset($_POST['prodAdresse']) AND isset($_POST['prodPays']) AND isset($_POST['prodCP']) AND isset($_POST['prodVille']) AND isset($_POST['prodSiren']))
-                    {
-                      $userNom = htmlspecialchars($_POST['userNom']);
-                      $userPrenom = htmlspecialchars($_POST['userPrenom']);
-                      $userEmail = htmlspecialchars($_POST['userMail']);
-                      $userTelFixe = htmlspecialchars($_POST['userTelFixe']);
-                      $userTelPort = htmlspecialchars($_POST['userTelPort']);
-                      $userPassword = sha1($_POST['userPassword']);
-                      $userPasswordConfirm = sha1($_POST['userPasswordConfirm']);
-                      $userRole = 2;
-                      $userDateInscription = date("YYYY-mm-dd");
-                      $userKey = mt_rand(10);
-                      $userConfirm = 0;
 
-                      $prodNomEnt = htmlspecialchars($_POST['prodNomEnt']);
-                      $prodActivite = htmlspecialchars($_POST['prodActivite']);
-                      $prodAdresse = htmlspecialchars($_POST['prodAdresse']);
-                      $prodPays = htmlspecialchars($_POST['prodPays']);
-                      $prodVille = htmlspecialchars($_POST['prodVille']);
-                      $prodCP = htmlspecialchars($_POST['prodCP']);
-                      $prodSiren = htmlspecialchars($prodSiren['prodSiren']);
-
-		      if(!empty($userNom) AND !empty($userPrenom) AND !empty($userEmail) AND !empty($userTelFixe) AND !empty($userTelPort) AND !empty($userPassword) AND !empty($userPasswordConfirm) AND !empty($prodNomEnt) AND !empty($prodActivite) AND !empty($prodAdresse) AND !empty($prodPays) AND !empty($prodVille) AND !empty($prodCP) AND !empty($prodSiren))
-		      {
-
-		      } else echo "Tout les champs doivent être complétés";
-                    }
                   }
                   ?>
                 </form>
@@ -171,14 +143,14 @@
 
             <form class="mt-5" action="#" method="post">
               <label for="Email" class="float-left text-dark"><small class="text-secondary text-uppercase">E-Mail</small></label>
-              <input required id="cliEmail" onchange="client_verifMail()" type="email" class="form-control" name="mail" placeholder="Votre adresse email">
-              <small id="cliErreurMsgMail" class="form-text text-muted">Saisir un email valide !</small>
+              <input required id="registerMail" onchange="verifMailRegister()" type="email" class="form-control" name="userMail" placeholder="Votre adresse email">
+              <small id="registerErreurMsgMail" style="visibility:hidden;" class="form-text text-muted">Saisir un email valide !</small>
               <label for="cliPassword" class="float-left text-dark"><small class="text-secondary text-uppercase">Mot de passe</small></label>
-              <input required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="client_verifPw()" id="cliPassword" type="password" name="password" class="form-control" placeholder="Choisissez un mot de passe">
+              <input required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="verifPwRegister()" id="RegisterPassword" type="password" name="userPassword" class="form-control" placeholder="Choisissez un mot de passe">
               <!-- Affiche message d'erreur -->
-              <small id="cliErreurMsgPw" class="text-danger form-text text-muted">Erreur : Le mot de passe doit contenir au moins 8 caractères, une majuscule et une minuscule</small>
+              <small id="registerErreurMsgPw" class="text-danger form-text text-muted" style="visibility: hidden;">Erreur : Le mot de passe doit contenir au moins 8 caractères, une majuscule et une minuscule</small>
 
-              <select class="form-control mt-2" name="role">
+              <select class="form-control mt-2" name="userRole">
                 <?php
                 $reqSelectTypeSign = $bdd->prepare("select * from role");
                 $reqSelectTypeSign->execute();
@@ -211,7 +183,41 @@
 
             </form>
           </div>
-        <?php } ?>
+        <?php }
+        // Ajout du producteur
+        if(isset($_POST['userNom']) AND isset($_POST['userPrenom']) AND isset($_POST['userPassword']) AND isset($_POST['userPasswordConfirm']) AND isset($_POST['userMail']) AND isset($_POST['userTelFixe']) AND
+        isset($_POST['prodNomEnt']) AND isset($_POST['prodActivite']) AND isset($_POST['prodAdresse']) AND isset($_POST['prodPays']) AND isset($_POST['prodCP']) AND isset($_POST['prodVille']) AND isset($_POST['prodSiren']))
+        {
+          $userNom = htmlspecialchars($_POST['userNom']);
+          $userPrenom = htmlspecialchars($_POST['userPrenom']);
+          $userEmail = htmlspecialchars($_POST['userMail']);
+          $userTelFixe = htmlspecialchars($_POST['userTelFixe']);
+          $userTelPort = htmlspecialchars($_POST['userTelPort']);
+          $userPassword = sha1($_POST['userPassword']);
+          $userPasswordConfirm = sha1($_POST['userPasswordConfirm']);
+          $userRole = 2;
+          $userDateInscription = date("Y-m-d");
+          $userKey = mt_rand(10, 10);
+          $userConfirm = 0;
+
+          $prodNomEnt = htmlspecialchars($_POST['prodNomEnt']);
+          $prodActivite = htmlspecialchars($_POST['prodActivite']);
+          $prodAdresse = htmlspecialchars($_POST['prodAdresse']);
+          $prodPays = htmlspecialchars($_POST['prodPays']);
+          $prodVille = htmlspecialchars($_POST['prodVille']);
+          $prodCP = htmlspecialchars($_POST['prodCP']);
+          $prodSiren = htmlspecialchars($_POST['prodSiren']);
+
+          if(!empty($userNom) AND !empty($userPrenom) AND !empty($userEmail) AND !empty($userTelFixe) AND !empty($userTelPort) AND !empty($userPassword) AND !empty($userPasswordConfirm) AND !empty($prodNomEnt) AND !empty($prodActivite) AND !empty($prodAdresse) AND !empty($prodPays) AND !empty($prodVille) AND !empty($prodCP) AND !empty($prodSiren))
+          {
+            $reqUser = $bdd->prepare("INSERT INTO utilisateur(userNom, userPrenom, userEmail, userTelFixe, userTelPort, userPasswd, userRole, userDateInscription, userKey, userConfirm) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            if($reqUser->execute(array($userNom, $userPrenom, $userEmail, $userTelFixe, $userTelPort, $userPassword, $userRole, $userDateInscription, $userKey, $userConfirm)))
+            {
+              echo "ok add";
+            } else echo "fail add".$userDateInscription;
+          } else echo "Tout les champs doivent être complétés";
+        }
+        ?>
         </div>
       </div>
     </div>
