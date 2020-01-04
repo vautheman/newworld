@@ -143,10 +143,10 @@
 
             <form class="mt-5" action="#" method="post">
               <label for="Email" class="float-left text-dark"><small class="text-secondary text-uppercase">E-Mail</small></label>
-              <input required id="registerMail" onchange="verifMailRegister()" type="email" class="form-control" name="userMail" placeholder="Votre adresse email">
+              <input required id="registerMail" onchange="verifMailRegister(), rejoindre()" type="email" class="form-control" name="userMail" placeholder="Votre adresse email">
               <small id="registerErreurMsgMail" style="visibility:hidden;" class="form-text text-muted">Saisir un email valide !</small>
               <label for="cliPassword" class="float-left text-dark"><small class="text-secondary text-uppercase">Mot de passe</small></label>
-              <input required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="verifPwRegister()" id="RegisterPassword" type="password" name="userPassword" class="form-control" placeholder="Choisissez un mot de passe">
+              <input required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="verifPwRegister(), rejoindre()" id="RegisterPassword" type="password" name="userPassword" class="form-control" placeholder="Choisissez un mot de passe">
               <!-- Affiche message d'erreur -->
               <small id="registerErreurMsgPw" class="text-danger form-text text-muted" style="visibility: hidden;">Erreur : Le mot de passe doit contenir au moins 8 caractères, une majuscule et une minuscule</small>
 
@@ -211,10 +211,18 @@
           if(!empty($userNom) AND !empty($userPrenom) AND !empty($userEmail) AND !empty($userTelFixe) AND !empty($userTelPort) AND !empty($userPassword) AND !empty($userPasswordConfirm) AND !empty($prodNomEnt) AND !empty($prodActivite) AND !empty($prodAdresse) AND !empty($prodPays) AND !empty($prodVille) AND !empty($prodCP) AND !empty($prodSiren))
           {
             $reqUser = $bdd->prepare("INSERT INTO utilisateur(userNom, userPrenom, userEmail, userTelFixe, userTelPort, userPasswd, userRole, userDateInscription, userKey, userConfirm) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $reqProd = $bdd->prepare("INSERT INTO producteurs(prodnomEnt, prodActivite, prodAdresse, prodPays, prodVille, prodCP, prodSIREN, userId) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+            $reqUserId = $bdd->prepare("SELECT * from utilisateur where userKey = ? AND userEmail = ?");
+            $reqUserId->execute(array($userKey, $userEmail));
+            $userId = $reqUserId->fetch();
             if($reqUser->execute(array($userNom, $userPrenom, $userEmail, $userTelFixe, $userTelPort, $userPassword, $userRole, $userDateInscription, $userKey, $userConfirm)))
             {
-              echo "ok add";
-            } else echo "fail add".$userDateInscription;
+              if($reqProd->execute(array($prodNomEnt, $prodActivite, $prodAdresse, $prodPays, $prodVille, $prodCP, $prodSiren, $userId["userId"])))
+              {
+                echo "ok add";
+                echo $userId['userId'];
+              } else echo $userDateInscription;
+            } else echo "fail add";
           } else echo "Tout les champs doivent être complétés";
         }
         ?>

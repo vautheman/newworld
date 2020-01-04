@@ -183,11 +183,10 @@ function statutInput()
 function rejoindre()
 {
   var btnRejoindre = document.getElementById('btnRejoindre');
-  var email = document.getElementById('cliEmail').value;
-  var password = document.getElementById('cliPassword').value;
+  var email = document.getElementById('registerMail').value;
+  var password = document.getElementById('RegisterPassword').value;
   var check1 = document.getElementById('check1').checked;
-  var check2 = document.getElementById('check2').checked;
-  if(check1==false || email.length<=1 || password.length<8)
+  if(check1==false || email.length<1 || password.length<8)
   {
     btnRejoindre.setAttribute("disabled", "");
   }
