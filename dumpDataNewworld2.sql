@@ -1,8 +1,8 @@
--- MySQL dump 10.17  Distrib 10.3.18-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.16  Distrib 10.1.41-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: newworld
 -- ------------------------------------------------------
--- Server version	10.3.18-MariaDB-0+deb10u1
+-- Server version	10.1.41-MariaDB-0+deb9u1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -42,32 +42,14 @@ INSERT INTO `administrateur` VALUES (1,0,1);
 /*!40000 ALTER TABLE `administrateur` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `choix`
---
-
-DROP TABLE IF EXISTS `choix`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `choix` (
-  `relaiId` int(11) NOT NULL,
-  `prodId` int(11) NOT NULL,
-  PRIMARY KEY (`relaiId`,`prodId`),
-  KEY `prodId` (`prodId`),
-  CONSTRAINT `choix_ibfk_1` FOREIGN KEY (`relaiId`) REFERENCES `pointRelai` (`relaiId`),
-  CONSTRAINT `choix_ibfk_2` FOREIGN KEY (`prodId`) REFERENCES `producteurs` (`prodId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `choix`
---
-
-LOCK TABLES `choix` WRITE;
-/*!40000 ALTER TABLE `choix` DISABLE KEYS */;
-INSERT INTO `choix` VALUES (1,1),(1,2),(1,3),(2,2),(2,3);
-/*!40000 ALTER TABLE `choix` ENABLE KEYS */;
-UNLOCK TABLES;
+	  `relaiId` int(11) NOT NULL,
+	  `prodId` int(11) NOT NULL,
+	  PRIMARY KEY (`relaiId`,`prodId`),
+	  KEY `prodId` (`prodId`),
+	  CONSTRAINT `choix_ibfk_1` FOREIGN KEY (`relaiId`) REFERENCES `pointRelai` (`relaiId`),
+	  CONSTRAINT `choix_ibfk_2` FOREIGN KEY (`prodId`) REFERENCES `producteurs` (`prodId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 
 --
 -- Table structure for table `clients`
@@ -168,7 +150,7 @@ DROP TABLE IF EXISTS `producteurs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `producteurs` (
-  `prodId` int(11) NOT NULL auto_increment,
+  `prodId` int(11) NOT NULL,
   `prodnomEnt` varchar(50) DEFAULT NULL,
   `prodActivite` varchar(50) DEFAULT NULL,
   `prodAdresse` varchar(50) DEFAULT NULL,
@@ -192,6 +174,23 @@ LOCK TABLES `producteurs` WRITE;
 INSERT INTO `producteurs` VALUES (1,'Le chat qui fume','Commerçant','6 rue des remparts','France','05000','Gap','166862025423',1),(2,'AgriBio','Agriculteur','lieu-dit l\'olivette','France','05000','Gap','45324564135456',1),(3,'La poissonerie','Bouché','Lieu dit l\'olivette','FRANCE','Valernes','04200','154581245421',2);
 /*!40000 ALTER TABLE `producteurs` ENABLE KEYS */;
 UNLOCK TABLES;
+
+CREATE TABLE `produits` (
+	  `produitId` int(11) NOT NULL,
+	  `produitLib` varchar(50) DEFAULT NULL,
+	  `produitDesc` varchar(50) DEFAULT NULL,
+	  `produitImg` varchar(50) DEFAULT NULL,
+	  `produitPU` float DEFAULT NULL,
+	  `produitQuantite` int(11) DEFAULT NULL,
+	  `produitValid` int(11) DEFAULT NULL,
+	  `prodId` int(11) NOT NULL,
+	  `typeProduitId` int(11) NOT NULL,
+	  PRIMARY KEY (`produitId`),
+	  KEY `prodId` (`prodId`),
+	  KEY `typeProduitId` (`typeProduitId`),
+	  CONSTRAINT `produits_ibfk_1` FOREIGN KEY (`prodId`) REFERENCES `producteurs` (`prodId`),
+	  CONSTRAINT `produits_ibfk_2` FOREIGN KEY (`typeProduitId`) REFERENCES `typeProduit` (`typeProduitId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 
 --
 -- Table structure for table `produits`
@@ -355,7 +354,7 @@ CREATE TABLE `utilisateur` (
   PRIMARY KEY (`userId`),
   KEY `userRole` (`userRole`),
   CONSTRAINT `utilisateur_ibfk_1` FOREIGN KEY (`userRole`) REFERENCES `role` (`roleId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -377,4 +376,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-20 12:57:49
+-- Dump completed on 2020-01-04 15:52:42

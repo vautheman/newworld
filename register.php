@@ -9,7 +9,6 @@
     <!-- SCRIPT -->
     <script src="assets/js/fontawesome.js" crossorigin="anonymous"></script>
     <script src="assets/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
   </head>
   <body onload="verifPw(), verifMail()">
     <a class="text-light btn btn-dark mt-4 ml-4" href="#">Return</a>
@@ -123,6 +122,200 @@
                     <?php
 
                   }
+                  if($role == 4)
+                  {
+                    ?>
+                    <!-- Information USER -->
+                    <h3 class="border-bottom mb-5 text-dark">User Information</h3>
+                    <div class="row">
+                      <div class="col-lg">
+                        <label for="userNom" class="float-left"><small class="text-secondary text-uppercase">Name</small></label>
+                        <input type="text" name="userNom" class="form-control" value="" id="userNom" placeholder="ex: Dupond">
+                      </div>
+                      <div class="col-lg">
+                        <label for="userPrenom" class="float-left"><small class="text-secondary text-uppercase">Firstname</small></label>
+                        <input type="text" name="userPrenom" class="form-control" value="" id="userPrenom" placeholder="ex: Jean">
+                      </div>
+                    </div>
+                    <div class="row mt-3">
+                      <div class="col-lg">
+                        <label for="userPassword" class="float-left text-dark"><small class="text-secondary text-uppercase">Password</small></label>
+                        <input required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="verifPw()" value="<?php echo $password; ?>" id="userPassword" type="password" name="userPassword" class="form-control" placeholder="Choose a password">
+                        <!-- Affiche message d'erreur -->
+                        <small id="userErreurMsgPw" class="text-danger form-text text-muted">Error: The password must contain at least 8 characters, one upper case and one lower case.</small>
+                      </div>
+                      <div class="col-lg">
+                        <label for="userPasswordConfirm" class="float-left text-dark"><small class="text-secondary text-uppercase">Confirm password</small></label>
+                        <input required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="verifPwConfirm()" value="" id="userPasswordConfirm" type="password" name="userPasswordConfirm" class="form-control" placeholder="Confirm your password">
+                        <!-- Affiche message d'erreur -->
+                        <small id="userErreurMsgPwConfirm" class="text-danger form-text text-muted" style="visibility: hidden;">Error: Passwords are not identical</small>
+                      </div>
+                    </div>
+
+                    <label for="userMail" class="float-left text-dark"><small class="text-secondary text-uppercase">E-Mail</small></label>
+                    <input required id="userMail" onchange="verifMail()" type="email" class="form-control" value="<?php echo $mail; ?>" name="userMail" placeholder="Your email address">
+                    <small id="userErreurMsgMail" class="form-text text-muted">Enter a valid email!</small>
+
+                    <div class="row mt-3">
+                      <div class="col">
+                        <label for="userTelFixe" class="float-left"><small class="text-secondary text-uppercase">Landline phone</small></label>
+                        <input type="text" name="userTelFixe" class="form-control" value="" id="userTelFixe" placeholder="Your landline phone">
+                      </div>
+                      <div class="col">
+                        <label for="userTelPort" class="float-left"><small class="text-secondary text-uppercase">Mobile phone</small></label>
+                        <input type="text" name="userTelPort" class="form-control" value="" id="userTelPort" placeholder="Your mobile phone">
+                      </div>
+                    </div>
+
+
+                    <!-- Information PRODUCTEUR -->
+                    <h3 class="border-bottom mb-5 mt-5 text-dark">Producer Information</h3>
+
+                    <div class="row">
+                      <div class="col-lg">
+                        <label for="relaiNom" class="float-left"><small class="text-secondary text-uppercase">Name of the relay</small></label>
+                        <input type="text" name="relaiNom" class="form-control" value="" id="relaiNom" placeholder="ex: Mondial Relay">
+                      </div>
+                    </div>
+
+                    <div class="row mt-3">
+                      <div class="col-lg">
+                        <label for="relaiAdresse" class="float-left"><small class="text-secondary text-uppercase">Your address</small></label>
+                        <input type="text" name="relaiAdresse" id="relaiAdresse" value="" class="form-control" placeholder="ex: lieu-dit ...">
+                      </div>
+                      <div class="col-lg">
+                        <label for="relaiPays" class="float-left"><small class="text-secondary text-uppercase">Your country</small></label>
+                        <input type="text" name="relaiPays" id="relaiPays" value="" placeholder="ex: FRANCE" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="row mt-3">
+                      <div class="col-lg">
+                        <label for="relaiVille" class="float-left"><small class="text-secondary text-uppercase">Your city</small></label>
+                        <input type="text" name="relaiVille" id="relaiVille" class="form-control" value="" placeholder="ex: GAP">
+                      </div>
+                      <div class="col-lg">
+                        <label for="relaiCP" class="float-left"><small class="text-secondary text-uppercase">Your zip code</small></label>
+                        <input type="text" name="relaiCP" id="relaiCP" class="form-control" value="" placeholder="ex: 05000">
+                      </div>
+                    </div>
+
+                    <h3 class="border-bottom mb-5 mt-5 text-dark">Timetable</h3>
+                    <div class="row" id="TimetableRow">
+                      <div class="col-lg">
+                        <?php
+                        $day = array("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche");
+                        for($noTourDay = 0; $noTourDay<7; $noTourDay++)
+                        {
+                        ?>
+                          <div class="d-flex">
+                            <div class="custom-control custom-switch mb-2" style="width: 200px;">
+                              <input type="checkbox" class="custom-control-input" onclick="timetable_check()" id="check<?php echo $day[$noTourDay]; ?>">
+                              <label class="custom-control-label" for="check<?php echo $day[$noTourDay]; ?>"><?php echo $day[$noTourDay]; ?></label>
+                            </div>
+                            <div id="select<?php echo $day[$noTourDay]; ?>" style="visibility:hidden;">
+                              <select style="margin-left: 100px;" class="mr-3" name="" required>
+                                <option disabled selected hidden>Opening Hours</option>
+                                <option value="24h/24">24h/24</option>
+                                <?php
+                                $heure = 24;
+                                $minute = array("00", "30");
+                                for($tour = 0; $tour<$heure; $tour++)
+                                {
+                                  for($tourMin = 0; $tourMin<count($minute); $tourMin++)
+                                  {
+                                    echo "<option value=".$tour.":".$minute[$tourMin].">".$tour.":".$minute[$tourMin]."</option>";
+                                  }
+                                }
+                                ?>
+                              </select> -
+                              <select class="ml-3" name="">
+                                <option disabled selected hidden>Closing Hours</option>
+                                <option value="24h/24">24h/24</option>
+                                <?php
+                                $heure = 24;
+                                $minute = array("00", "30");
+                                for($tour = 0; $tour<$heure; $tour++)
+                                {
+                                  for($tourMin = 0; $tourMin<count($minute); $tourMin++)
+                                  {
+                                    echo "<option value=".$tour.":".$minute[$tourMin].">".$tour.":".$minute[$tourMin]."</option>";
+                                  }
+                                }
+                                ?>
+                              </select>
+                            </div>
+                          </div>
+                        <?php } ?>
+
+                        <script type="text/javascript">
+                          function timetable_check()
+                          {
+                            var checkLundi = document.getElementById("checkLundi");
+                            var selectLundi = document.getElementById("selectLundi");
+
+                            var checkMardi = document.getElementById("checkMardi");
+                            var selectMardi = document.getElementById("selectMardi")
+
+                            var checkMercredi = document.getElementById("checkMercredi");
+                            var selectMercredi = document.getElementById("selectMercredi");
+
+                            var checkJeudi = document.getElementById("checkJeudi");
+                            var selectJeudi = document.getElementById("selectJeudi");
+
+                            var checkVendredi = document.getElementById("checkVendredi");
+                            var selectVendredi = document.getElementById("selectVendredi");
+
+                            var checkSamedi = document.getElementById("checkSamedi");
+                            var selectSamedi = document.getElementById("selectSamedi");
+
+                            var checkDimanche = document.getElementById("checkDimanche");
+                            var selectDimanche = document.getElementById("selectDimanche");
+                            if(checkLundi.checked == true)
+                            {
+                              selectLundi.style.visibility = "visible";
+                            } else selectLundi.style.visibility = "hidden";
+
+                            if(checkMardi.checked == true)
+                            {
+                              selectMardi.style.visibility = "visible";
+                            } else selectMardi.style.visibility = "hidden";
+
+                            if(checkMercredi.checked == true)
+                            {
+                              selectMercredi.style.visibility = "visible";
+                            } else selectMercredi.style.visibility = "hidden";
+
+                            if(checkJeudi.checked == true)
+                            {
+                              selectJeudi.style.visibility = "visible";
+                            } else selectJeudi.style.visibility = "hidden";
+
+                            if(checkVendredi.checked == true)
+                            {
+                              selectVendredi.style.visibility = "visible";
+                            } else selectVendredi.style.visibility = "hidden";
+
+                            if(checkSamedi.checked == true)
+                            {
+                              selectSamedi.style.visibility = "visible";
+                            } else selectSamedi.style.visibility = "hidden";
+
+                            if(checkDimanche.checked == true)
+                            {
+                              selectDimanche.style.visibility = "visible";
+                            } else selectDimanche.style.visibility = "hidden";
+                          }
+                        </script>
+                      </div>
+                    </div>
+
+                    <input type="submit" class="btn btn-dark w-100 mt-5 p-3" value="LET'S GO !">
+
+
+                    <?php
+
+                  }
                   ?>
                 </form>
               </div>
@@ -141,7 +334,7 @@
             <a href="#" class="btn btn-dark w-100 mb-2"><i class="fab fa-github mr-3"></i> Sign in with Github</a>
             <a href="#" class="btn w-100 text-light" style="background: #465996;"><i class="fab fa-facebook-square mr-3"></i> Sign in with Facebook</a>
 
-            <form class="mt-5" action="#" method="post">
+            <form class="mt-5" action="" method="post">
               <label for="Email" class="float-left text-dark"><small class="text-secondary text-uppercase">E-Mail</small></label>
               <input required id="registerMail" onchange="verifMailRegister(), rejoindre()" type="email" class="form-control" name="userMail" placeholder="Votre adresse email">
               <small id="registerErreurMsgMail" style="visibility:hidden;" class="form-text text-muted">Saisir un email valide !</small>
@@ -197,7 +390,10 @@
           $userPasswordConfirm = sha1($_POST['userPasswordConfirm']);
           $userRole = 2;
           $userDateInscription = date("Y-m-d");
-          $userKey = mt_rand(10, 10);
+          $userKey = "";
+          for($i=1;$i<15;$i++) {
+            $userKey .= mt_rand(0,9);
+          }
           $userConfirm = 0;
 
           $prodNomEnt = htmlspecialchars($_POST['prodNomEnt']);
@@ -212,16 +408,85 @@
           {
             $reqUser = $bdd->prepare("INSERT INTO utilisateur(userNom, userPrenom, userEmail, userTelFixe, userTelPort, userPasswd, userRole, userDateInscription, userKey, userConfirm) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $reqProd = $bdd->prepare("INSERT INTO producteurs(prodnomEnt, prodActivite, prodAdresse, prodPays, prodVille, prodCP, prodSIREN, userId) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
-            $reqUserId = $bdd->prepare("SELECT * from utilisateur where userKey = ? AND userEmail = ?");
-            $reqUserId->execute(array($userKey, $userEmail));
-            $userId = $reqUserId->fetch();
             if($reqUser->execute(array($userNom, $userPrenom, $userEmail, $userTelFixe, $userTelPort, $userPassword, $userRole, $userDateInscription, $userKey, $userConfirm)))
             {
+              $reqUserId = $bdd->prepare("SELECT * from utilisateur where userKey = ? AND userEmail = ?");
+              $reqUserId->execute(array($userKey, $userEmail));
+              $userId = $reqUserId->fetch();
               if($reqProd->execute(array($prodNomEnt, $prodActivite, $prodAdresse, $prodPays, $prodVille, $prodCP, $prodSiren, $userId["userId"])))
               {
-                echo "ok add";
-                echo $userId['userId'];
-              } else echo $userDateInscription;
+                $header="MIME-Version: 1.0\r\n";
+  							$header.='From: "kvmserver.ddns.net"<contact@autheman-victor.fr>'."\n";
+  							$header.='Content-Type:text/html; charset"utf-8"'."\n";
+  							$header.='Content-Transfer-Encoding: 8bit';
+
+  							$messageMail='
+  							<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  							"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+  							<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  							"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+  							<html xmlns:v="urn:schemas-microsoft-com:vml">
+  								<head>
+  									<meta http-equiv="content-type" content="text/html; charset=utf-8">
+  									<meta charset="utf8">
+  									<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+  								</head>
+  								<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+  									<table bgcolor="#242943"width="100%" border="0" cellpadding="0" cellspacing="0">
+  										<tbody>
+  											<tr>
+  												<td bgcolor="#242943">
+  													<div>
+  														<table align="center" width="590" border="0" cellpadding="0" cellspacing="0">
+  															<tbody>
+  															<tr>
+  																<td height="30" style="font-size: 30px; line-height: 30px;">&nbsp;</td>
+  															</tr>
+  															<tr>
+  																<td align="center" style="text-align:center;">
+  																	<a href="http://autheman-victor.fr">
+  																		<img src="http://autheman-victor.fr/ancienSite/images/logo.png" width="78" border="0" alt="Logo autheman-victor.fr">
+  																	</a>
+  																</td>
+  															</tr>
+  															<tr>
+  																<td height="30" style="font-size: 30px; line-height: 30px;">&nbsp;</td>
+  															</tr>
+  															<tr>
+  																<td align="center" style="font-family: Helvetica, sans-serif; text-align: center; font-size:32px; color: #FFF; mso-line-height-rule: exactly; line-height: 28px;">
+  																	Confirmation de votre compte
+  																</td>
+  															</tr>
+  															<tr>
+  																<td height="30" style="font-size: 30px; line-height: 30px;">&nbsp;</td>
+  															</tr>
+  															<tr>
+  																<td align="center" style="font-family: Helvetica, sans-serif; text-align: center; font-size:15px; color: #878b99; mso-line-height-rule: exactly; line-height: 26px;">
+  																	<a href="kvmserver.ddns.net/newworld/registerConfirm.php?user'.urlencode($userEmail).'&key='.$userKey.'">Confirmation</a>
+  																</td>
+  															</tr>
+  															<tr>
+  																<td height="30" style="font-size: 30px; line-height: 30px;">&nbsp;</td>
+  															</tr>
+  															</tbody>
+  														</table>
+  													</div>
+
+  												</td>
+  											</tr>
+  										</tbody>
+  									</table>
+  								</body>
+  							</html>
+  							';
+
+  							mail($email, "Confirmation de compte", $messageMail, $header);
+                ?>
+                <SCRIPT LANGUAGE="JavaScript">
+                  document.location.href="registerValid.php";
+                </SCRIPT>
+                <?php
+              }
             } else echo "fail add";
           } else echo "Tout les champs doivent être complétés";
         }
