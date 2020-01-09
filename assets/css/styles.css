@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');
+
+.loader {
+	position : fixed;
+	z-index: 99999999999;
+	background-color: white;
+	background-size: auto;
+	top : 0px;
+	left : 0px;
+	height : 100%;
+	width : 100%;
+	cursor : wait;
+	background-image: url("../images/loading_world.gif");
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.loader_text{
+  color: white;
+  letter-spacing: 3px;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  margin-top: -90px;
+  font-family: 'Anton';
+}

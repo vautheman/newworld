@@ -6,13 +6,20 @@
     <title>New World</title>
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/wow.css">
     <!-- SCRIPT -->
-    <script src="assets/js/fontawesome.js" crossorigin="anonymous"></script>
-    <script src="assets/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="assets/js/wow.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      new WOW().init();
+    </script>
   </head>
   <body onload="verifPw(), verifMail()">
-    <a class="text-light btn btn-dark mt-4 ml-4" href="#">Return</a>
+    <a class="text-light btn btn-dark mt-4 ml-4" href="javascript:history.go(-1)">Return</a>
     <div class="container">
+      <img src="assets/images/tache/tache3.jpg" class="wow fadeIn" style="position: absolute; z-index:-1; width: 1000px; right: 0; top:0;" alt="">
       <div class="row" style="margin-top: 50px;">
 
           <?php
@@ -323,13 +330,14 @@
             }
           } else {
           ?>
-          <div class="col-sm">
+          <div class="col-sm wow fadeIn">
             <h1 class="display-4">Register Form</h1>
             <p class="text-justify mt-5" style="width: 80%;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             <a href="#" class="btn btn-dark mt-5">Contact Administrator</a>
           </div>
           <div class="col-sm-5">
-          <div class="shadow p-3 mb-5 bg-white rounded">
+
+          <div class="shadow p-3 mb-5 bg-white rounded wow fadeInRight">
             <a href="#" class="btn btn-light w-100 mb-2"><i class="fab fa-google mr-3"></i> Sign in with Google</a>
             <a href="#" class="btn btn-dark w-100 mb-2"><i class="fab fa-github mr-3"></i> Sign in with Github</a>
             <a href="#" class="btn w-100 text-light" style="background: #465996;"><i class="fab fa-facebook-square mr-3"></i> Sign in with Facebook</a>
