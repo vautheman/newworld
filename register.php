@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/wow.css">
     <!-- SCRIPT -->
+    <script src="https://kit.fontawesome.com/3ba462b0e4.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="assets/js/wow.js" charset="utf-8"></script>
+    <script src="assets/js/datagouv.js" charset="utf-8"></script>
     <script type="text/javascript">
       new WOW().init();
     </script>
@@ -176,7 +178,7 @@
 
 
                     <!-- Information PRODUCTEUR -->
-                    <h3 class="border-bottom mb-5 mt-5 text-dark">Producer Information</h3>
+                    <h3 class="border-bottom mb-5 mt-5 text-dark">Relay Information</h3>
 
                     <div class="row">
                       <div class="col-lg">
@@ -317,7 +319,7 @@
                       </div>
                     </div>
 
-                    <input type="submit" class="btn btn-dark w-100 mt-5 p-3" value="LET'S GO !">
+                    <input type="submit" class="btn btn-dark w-100 mt-5 p-3" onclick="adresseInput()" value="LET'S GO !">
 
 
                     <?php
@@ -385,10 +387,11 @@
             </form>
           </div>
         <?php }
-        // Ajout du producteur
-        if(isset($_POST['userNom']) AND isset($_POST['userPrenom']) AND isset($_POST['userPassword']) AND isset($_POST['userPasswordConfirm']) AND isset($_POST['userMail']) AND isset($_POST['userTelFixe']) AND
-        isset($_POST['prodNomEnt']) AND isset($_POST['prodActivite']) AND isset($_POST['prodAdresse']) AND isset($_POST['prodPays']) AND isset($_POST['prodCP']) AND isset($_POST['prodVille']) AND isset($_POST['prodSiren']))
+        // *********** AJOUT DE L'UTILISATEUR ************* //
+        // Si toute les données de l'utilisateur existent
+        if(isset($_POST['userNom']) AND isset($_POST['userPrenom']) AND isset($_POST['userPassword']) AND isset($_POST['userPasswordConfirm']) AND isset($_POST['userMail']) AND isset($_POST['userTelFixe']))
         {
+          // On stocke les données de l'utilisateur dans des variables
           $userNom = htmlspecialchars($_POST['userNom']);
           $userPrenom = htmlspecialchars($_POST['userPrenom']);
           $userEmail = htmlspecialchars($_POST['userMail']);
@@ -397,106 +400,136 @@
           $userPassword = sha1($_POST['userPassword']);
           $userPasswordConfirm = sha1($_POST['userPasswordConfirm']);
           $userRole = 2;
+          // On fixe la date de l'inscription à aujourd'hui
           $userDateInscription = date("Y-m-d");
+          // On crée une clé d'identification pour la vérification par mail
           $userKey = "";
           for($i=1;$i<15;$i++) {
             $userKey .= mt_rand(0,9);
           }
+          // On fixe la confirmation du mail à 0
           $userConfirm = 0;
 
-          $prodNomEnt = htmlspecialchars($_POST['prodNomEnt']);
-          $prodActivite = htmlspecialchars($_POST['prodActivite']);
-          $prodAdresse = htmlspecialchars($_POST['prodAdresse']);
-          $prodPays = htmlspecialchars($_POST['prodPays']);
-          $prodVille = htmlspecialchars($_POST['prodVille']);
-          $prodCP = htmlspecialchars($_POST['prodCP']);
-          $prodSiren = htmlspecialchars($_POST['prodSiren']);
+          // On récupère l'identifiant unique de l'utilisateur créer par l'auto_increment grâce au mail et la clé d'identification du mail
+          // On prépare la requete
+          $reqUserId = $bdd->prepare("SELECT userId from utilisateur where userKey = ? AND userEmail = ?");
+          // Puis on l'exécute
+          $reqUserId->execute(array($userKey, $userEmail));
+          // on stocke son identifiant récupéré dans une variable
+          $userId = $reqUserId->fetch();
 
-          if(!empty($userNom) AND !empty($userPrenom) AND !empty($userEmail) AND !empty($userTelFixe) AND !empty($userTelPort) AND !empty($userPassword) AND !empty($userPasswordConfirm) AND !empty($prodNomEnt) AND !empty($prodActivite) AND !empty($prodAdresse) AND !empty($prodPays) AND !empty($prodVille) AND !empty($prodCP) AND !empty($prodSiren))
+          // Si toutes les données de l'utilisateur ne sont pas vides
+          if(!empty($userNom) AND !empty($userPrenom) AND !empty($userEmail) AND !empty($userTelFixe) AND !empty($userTelPort) AND !empty($userPassword) AND !empty($userPasswordConfirm))
           {
+            // On prépare la requête pour l'ajout de l'utilisateur à la base de données
             $reqUser = $bdd->prepare("INSERT INTO utilisateur(userNom, userPrenom, userEmail, userTelFixe, userTelPort, userPasswd, userRole, userDateInscription, userKey, userConfirm) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $reqProd = $bdd->prepare("INSERT INTO producteurs(prodnomEnt, prodActivite, prodAdresse, prodPays, prodVille, prodCP, prodSIREN, userId) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+            // Si la requête est correctement exécuté, alors ...
             if($reqUser->execute(array($userNom, $userPrenom, $userEmail, $userTelFixe, $userTelPort, $userPassword, $userRole, $userDateInscription, $userKey, $userConfirm)))
             {
-              $reqUserId = $bdd->prepare("SELECT * from utilisateur where userKey = ? AND userEmail = ?");
-              $reqUserId->execute(array($userKey, $userEmail));
-              $userId = $reqUserId->fetch();
-              if($reqProd->execute(array($prodNomEnt, $prodActivite, $prodAdresse, $prodPays, $prodVille, $prodCP, $prodSiren, $userId["userId"])))
+              // Si toutes les données du nouveau producteurs existent
+              if(isset($_POST['prodNomEnt']) AND isset($_POST['prodActivite']) AND isset($_POST['prodAdresse']) AND isset($_POST['prodPays']) AND isset($_POST['prodCP']) AND isset($_POST['prodVille']) AND isset($_POST['prodSiren']))
               {
-                $header="MIME-Version: 1.0\r\n";
-  							$header.='From: "kvmserver.ddns.net"<contact@autheman-victor.fr>'."\n";
-  							$header.='Content-Type:text/html; charset"utf-8"'."\n";
-  							$header.='Content-Transfer-Encoding: 8bit';
+                // On stocke toutes les données dans des variables
+                $prodNomEnt = htmlspecialchars($_POST['prodNomEnt']);
+                $prodActivite = htmlspecialchars($_POST['prodActivite']);
+                $prodAdresse = htmlspecialchars($_POST['prodAdresse']);
+                $prodPays = htmlspecialchars($_POST['prodPays']);
+                $prodVille = htmlspecialchars($_POST['prodVille']);
+                $prodCP = htmlspecialchars($_POST['prodCP']);
+                $prodSiren = htmlspecialchars($_POST['prodSiren']);
 
-  							$messageMail='
-  							<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  							"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-  							<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  							"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-  							<html xmlns:v="urn:schemas-microsoft-com:vml">
-  								<head>
-  									<meta http-equiv="content-type" content="text/html; charset=utf-8">
-  									<meta charset="utf8">
-  									<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
-  								</head>
-  								<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-  									<table bgcolor="#242943"width="100%" border="0" cellpadding="0" cellspacing="0">
-  										<tbody>
-  											<tr>
-  												<td bgcolor="#242943">
-  													<div>
-  														<table align="center" width="590" border="0" cellpadding="0" cellspacing="0">
-  															<tbody>
-  															<tr>
-  																<td height="30" style="font-size: 30px; line-height: 30px;">&nbsp;</td>
-  															</tr>
-  															<tr>
-  																<td align="center" style="text-align:center;">
-  																	<a href="http://autheman-victor.fr">
-  																		<img src="http://autheman-victor.fr/ancienSite/images/logo.png" width="78" border="0" alt="Logo autheman-victor.fr">
-  																	</a>
-  																</td>
-  															</tr>
-  															<tr>
-  																<td height="30" style="font-size: 30px; line-height: 30px;">&nbsp;</td>
-  															</tr>
-  															<tr>
-  																<td align="center" style="font-family: Helvetica, sans-serif; text-align: center; font-size:32px; color: #FFF; mso-line-height-rule: exactly; line-height: 28px;">
-  																	Confirmation de votre compte
-  																</td>
-  															</tr>
-  															<tr>
-  																<td height="30" style="font-size: 30px; line-height: 30px;">&nbsp;</td>
-  															</tr>
-  															<tr>
-  																<td align="center" style="font-family: Helvetica, sans-serif; text-align: center; font-size:15px; color: #878b99; mso-line-height-rule: exactly; line-height: 26px;">
-  																	<a href="kvmserver.ddns.net/newworld/registerConfirm.php?user'.urlencode($userEmail).'&key='.$userKey.'">Confirmation</a>
-  																</td>
-  															</tr>
-  															<tr>
-  																<td height="30" style="font-size: 30px; line-height: 30px;">&nbsp;</td>
-  															</tr>
-  															</tbody>
-  														</table>
-  													</div>
+                // Si toutes les données du nouveau producteur ne sont pas vides
+                if(!empty($prodNomEnt) AND !empty($prodActivite) AND !empty($prodAdresse) AND !empty($prodPays) AND !empty($prodVille) AND !empty($prodCP) AND !empty($prodSiren))
+                {
+                  // On prépare la requête pour l'ajout du producteur dans la base de données
+                  $reqProd = $bdd->prepare("INSERT INTO producteurs(prodnomEnt, prodActivite, prodAdresse, prodPays, prodVille, prodCP, prodSIREN, userId) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
 
-  												</td>
-  											</tr>
-  										</tbody>
-  									</table>
-  								</body>
-  							</html>
-  							';
+                  // Si la requete d'ajout du nouveau producteur dans la base de données s'execute correctement
+                  if($reqProd->execute(array($prodNomEnt, $prodActivite, $prodAdresse, $prodPays, $prodVille, $prodCP, $prodSiren, $userId["userId"])))
+                  {
+                    // On crée le mail que l'on va envoyer au nouvel utilisateur
+                    $header="MIME-Version: 1.0\r\n";
+      							$header.='From: "kvmserver.ddns.net"<contact@autheman-victor.fr>'."\n";
+      							$header.='Content-Type:text/html; charset"utf-8"'."\n";
+      							$header.='Content-Transfer-Encoding: 8bit';
 
-  							mail($email, "Confirmation de compte", $messageMail, $header);
-                ?>
-                <SCRIPT LANGUAGE="JavaScript">
-                  document.location.href="registerValid.php";
-                </SCRIPT>
-                <?php
+      							$messageMail='
+      							<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+      							"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+      							<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+      							"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+      							<html xmlns:v="urn:schemas-microsoft-com:vml">
+      								<head>
+      									<meta http-equiv="content-type" content="text/html; charset=utf-8">
+      									<meta charset="utf8">
+      									<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+      								</head>
+      								<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+      									<table bgcolor="#242943"width="100%" border="0" cellpadding="0" cellspacing="0">
+      										<tbody>
+      											<tr>
+      												<td bgcolor="#242943">
+      													<div>
+      														<table align="center" width="590" border="0" cellpadding="0" cellspacing="0">
+      															<tbody>
+      															<tr>
+      																<td height="30" style="font-size: 30px; line-height: 30px;">&nbsp;</td>
+      															</tr>
+      															<tr>
+      																<td align="center" style="text-align:center;">
+      																	<a href="http://autheman-victor.fr">
+      																		<img src="http://autheman-victor.fr/ancienSite/images/logo.png" width="78" border="0" alt="Logo autheman-victor.fr">
+      																	</a>
+      																</td>
+      															</tr>
+      															<tr>
+      																<td height="30" style="font-size: 30px; line-height: 30px;">&nbsp;</td>
+      															</tr>
+      															<tr>
+      																<td align="center" style="font-family: Helvetica, sans-serif; text-align: center; font-size:32px; color: #FFF; mso-line-height-rule: exactly; line-height: 28px;">
+      																	Confirmation de votre compte
+      																</td>
+      															</tr>
+      															<tr>
+      																<td height="30" style="font-size: 30px; line-height: 30px;">&nbsp;</td>
+      															</tr>
+      															<tr>
+      																<td align="center" style="font-family: Helvetica, sans-serif; text-align: center; font-size:15px; color: #878b99; mso-line-height-rule: exactly; line-height: 26px;">
+      																	<a href="kvmserver.ddns.net/newworld/registerConfirm.php?user'.urlencode($userEmail).'&key='.$userKey.'">Confirmation</a>
+      																</td>
+      															</tr>
+      															<tr>
+      																<td height="30" style="font-size: 30px; line-height: 30px;">&nbsp;</td>
+      															</tr>
+      															</tbody>
+      														</table>
+      													</div>
+
+      												</td>
+      											</tr>
+      										</tbody>
+      									</table>
+      								</body>
+      							</html>
+      							';
+                    // On envoi le mail de confirmation
+      							mail($email, "Confirmation de compte", $messageMail, $header);
+                    ?>
+                    <SCRIPT LANGUAGE="JavaScript">
+                      document.location.href="registerValid.php";
+                    </SCRIPT>
+                    <?php
+                  } else $msgError = "Un problème est survenu lors de l'ajout à la base de données";
+                } else echo "fail add";
+              }  else $msgError = "Tous les champs doivent être complétés";
+              // Si toutes les données du nouveau point relai existent
+              if(isset($_POST['relaiNom']) AND isset($_POST['relaiPays']) AND isset($_POST['relaiVille']) AND isset($_POST['relaiCP']) AND isset($_POST['relaiAdresse']))
+              {
+                // On stocke toutes les données dans des variables
+                $relaiNom = htmlspecialchars($_POST['relai'])
               }
-            } else echo "fail add";
-          } else echo "Tout les champs doivent être complétés";
+            } else $msgError = "Un problème est survenu lors de l'ajout à la base de données";
+          } else $msgError = "Tous les champs doivent être complétés";
         }
         ?>
         </div>

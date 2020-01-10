@@ -7,7 +7,9 @@
   <!-- CSS -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/wow.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
   <!-- SCRIPT -->
+  <script src="https://kit.fontawesome.com/3ba462b0e4.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -18,10 +20,10 @@
 </head>
   <body>
     <main class="container-fluid p-0 wow fadeIn">
-      <div class="shadow p-3 mb-5 bg-white rounded">
+      <div class="shadow p-2 mb-5 bg-dark rounded">
         <div class="row">
           <div class="col-sm d-flex flex-row flex-wrap">
-            <h4 class="text-dark mt-1"><i class="fas fa-globe-europe"></i> New World</h4>
+            <h4 class="text-light mt-1"><i class="fas fa-globe-europe"></i> New World</h4>
             <form class="form w-50 ml-4" action="index.html" method="post">
               <input type="text" class="form-control" name="" value="" placeholder="Search ...">
             </form>
@@ -29,19 +31,19 @@
           <div class="col-sm d-flex flex-row flex-wrap justify-content-end">
             <ul class="nav">
               <li class="nav-item">
-                <a href="#" class="nav-link text-dark">Home</a>
+                <a href="#" class="nav-link text-light">Home</a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link text-dark">Store</a>
+                <a href="#" class="nav-link text-light">Store</a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link text-dark"><i class="fas fa-user"></i> Login</a>
+                <a href="#" class="nav-link text-light"><i class="fas fa-user"></i> Login</a>
               </li>
               <li>
                 <a href="register.php" class="btn btn-primary p-2 pl-3 pr-3 bg-primary mr-2 text-capitalize"><i class="fas fa-sign-in-alt"></i></i> Register Now</a>
               </li>
               <li>
-                <a href="#" class="btn btn-dark p-2 pl-3 pr-3 bg-dark text-capitalize"><i class="fab fa-github"></i> Github</a>
+                <a href="#" class="btn btn-light text-dark p-2 pl-3 pr-3 bg-light text-capitalize"><i class="fab fa-github text-dark"></i> Github</a>
               </li>
             </ul>
           </div>
