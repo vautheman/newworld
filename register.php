@@ -526,7 +526,7 @@
               if(isset($_POST['relaiNom']) AND isset($_POST['relaiPays']) AND isset($_POST['relaiVille']) AND isset($_POST['relaiCP']) AND isset($_POST['relaiAdresse']))
               {
                 // On stocke toutes les données dans des variables
-                $relaiNom = htmlspecialchars($_POST['relai'])
+                $relaiNom = htmlspecialchars($_POST['relai']);
               }
             } else $msgError = "Un problème est survenu lors de l'ajout à la base de données";
           } else $msgError = "Tous les champs doivent être complétés";
