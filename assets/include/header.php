@@ -16,7 +16,7 @@
             <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink" style="margin-right: 150px !important;">
               <div class="p-3" style="width: 400px !important;">
                 <div class="text-center">
-                  <a href="#" class="btn btn-success w-100">Identifiez-vous</a>
+                  <a href="login.php" class="btn btn-success w-100">Identifiez-vous</a>
                   <small>New customer ? <a href="#">Create an account here</a> </small>
                 </div>
                 <hr>
@@ -26,7 +26,7 @@
           </li>
           <li class="nav-item dropdown text-light d-block" style="position: relative; top: -12px;">
             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false"><span>Cart</span><br><span><small>0 article</small></span></a>
+            aria-haspopup="true" aria-expanded="false"><span><i class="fas fa-shopping-cart"></i>Cart</span><br><span><small>0 article</small></span></a>
             <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink" style="margin-right: 150px !important;">
               <div class="p-3" style="width: 400px !important;">
                 <div class="text-center">
@@ -48,8 +48,12 @@
 <div class="shadow mb-5 pt-2 pr-2 pl-2 bg-dark" style="position: relative; top:95px;">
   <div class="row bg-white">
     <div class="col bg-dark">
-      <div class="ml-4 mb-1">
+      <div class="ml-4 mb-1 d-inline-block">
         <a href="#" class="bg-white pr-3 pl-3 pb-2 pt-2 text-dark "><i class="fas fa-bars text-orange"></i> Tout nos rayons</a>
+      </div>
+      <div class="d-inline-block">
+        <a href="#" class="border-right text-light pl-2 pr-2"><i class="fas fa-users text-orange"></i> Who are we ?</a>
+        <a href="#" class="border-right text-light pl-2 pr-2"><i class="fas fa-envelope-open-text text-orange"></i> Contact us</a>
       </div>
     </div>
     <div class="w-100 d-flex flex-row justify-content-around mt-2 mb-2">

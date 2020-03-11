@@ -5,13 +5,14 @@
     <meta charset="utf-8">
     <title>New World</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/wow.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <!-- SCRIPT -->
     <script src="https://kit.fontawesome.com/3ba462b0e4.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/popper.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/wow.js" charset="utf-8"></script>
     <script src="assets/js/datagouv.js" charset="utf-8"></script>
     <script type="text/javascript">
@@ -526,7 +527,7 @@
               if(isset($_POST['relaiNom']) AND isset($_POST['relaiPays']) AND isset($_POST['relaiVille']) AND isset($_POST['relaiCP']) AND isset($_POST['relaiAdresse']))
               {
                 // On stocke toutes les données dans des variables
-                $relaiNom = htmlspecialchars($_POST['relai'])
+                $relaiNom = htmlspecialchars($_POST['relai']);
               }
             } else $msgError = "Un problème est survenu lors de l'ajout à la base de données";
           } else $msgError = "Tous les champs doivent être complétés";
