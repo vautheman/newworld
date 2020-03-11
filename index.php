@@ -5,52 +5,29 @@
   <meta charset="utf-8">
   <title>New World</title>
   <!-- CSS -->
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/bootstrap.css">
   <link rel="stylesheet" href="assets/css/wow.css">
   <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- Notification -->
+  <link rel="stylesheet" href="assets/css/toastify/toastify.css">
+
   <!-- SCRIPT -->
   <script src="https://kit.fontawesome.com/3ba462b0e4.js" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/js/popper.min.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
   <script src="assets/js/wow.js" charset="utf-8"></script>
+
   <script type="text/javascript">
     new WOW().init();
   </script>
 </head>
   <body>
     <main class="container-fluid p-0 wow fadeIn">
-      <div class="shadow p-2 mb-5 bg-dark rounded">
-        <div class="row">
-          <div class="col-sm d-flex flex-row flex-wrap">
-            <h4 class="text-light mt-1"><i class="fas fa-globe-europe"></i> New World</h4>
-            <form class="form w-50 ml-4" action="index.html" method="post">
-              <input type="text" class="form-control" name="" value="" placeholder="Search ...">
-            </form>
-          </div>
-          <div class="col-sm d-flex flex-row flex-wrap justify-content-end">
-            <ul class="nav">
-              <li class="nav-item">
-                <a href="#" class="nav-link text-light">Home</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link text-light">Store</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link text-light"><i class="fas fa-user"></i> Login</a>
-              </li>
-              <li>
-                <a href="register.php" class="btn btn-primary p-2 pl-3 pr-3 bg-primary mr-2 text-capitalize"><i class="fas fa-sign-in-alt"></i></i> Register Now</a>
-              </li>
-              <li>
-                <a href="#" class="btn btn-light text-dark p-2 pl-3 pr-3 bg-light text-capitalize"><i class="fab fa-github text-dark"></i> Github</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <?php include 'assets/include/header.php'; ?>
 
-      <div class="container text-center" style="margin-top: 100px; margin-bottom: 100px;">
+      <div class="container text-center" style="margin-top: 200px; margin-bottom: 100px;">
         <img src="assets/images/tache/tache1.jpg" style="position: absolute; z-index: -1; top: -100px; left: -100px; width: 800px;" alt="">
         <img src="assets/images/tache/tache2.jpg" style="position: absolute; z-index: -1; top: 200px; right: 0px; width: 800px;" alt="">
         <h2 class="display-3 text-dark">Welcome to</h2>
@@ -70,45 +47,39 @@
         </div>
       </div>
 
-      <div class="container">
-        <div class="d-flex flex-row justify-content-between flex-wrap">
-          <!-- Card -->
-          <div class="card wow zoomIn mb-4" style="width: 22rem;">
-            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title"><a>Card title</a></h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Button</a>
+      <div class="container mb-5">
+        <ul class="list-group list-group-horizontal-md">
+          <?php
+          // Récupération des produits dans la base de données
+          $reqProduit = $bdd->prepare("SELECT * FROM produits");
+          $reqProduit->execute();
+          while($cur = $reqProduit->fetch())
+          {
+          ?>
+          <li class="list-group-item item-produit m-2 border" style="height: 300px;">
+            <div class="">
+              <a href="#">
+                <div class="img pb-1">
+                  <img width="150px" class="text-center" src="assets/images/produits/<?php echo $cur["produitImg"]; ?>" alt="">
+                </div>
+              </a>
+              <div class="w-100 p-2" style="position: absolute; bottom: -20px; left:0;">
+                <button class="btn btn-primary float-right" type="button" name="button"><i class="fas fa-cart-plus"></i></button>
+                <p class="text-left" style="font-size: 27px; font-weight: bold;" class="text-dark"><?php echo $cur['produitPU']; ?> €</p>
+                <a href="#" class="text-dark"><p class="text-left" style="max-width: 200px; width: auto; line-height: 10px;"><small><?php echo $cur["produitLib"]; ?><br><?php echo $cur["produitDesc"]; ?></small></p></a>
+              </div>
             </div>
-          </div>
-          <div class="card wow zoomIn mb-4" style="width: 22rem;">
-            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title"><a>Card title</a></h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Button</a>
-            </div>
-          </div>
-          <div class="card wow zoomIn mb-4" style="width: 22rem;">
-            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title"><a>Card title</a></h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Button</a>
-            </div>
-          </div>
-          <div class="card wow zoomIn mb-4" style="width: 22rem;">
-            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title"><a>Card title</a></h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Button</a>
-            </div>
-          </div>
-        </div>
+          </li>
+          <?php
+          }
+          ?>
+        </ul>
       </div>
     </main>
 
     <?php include 'assets/include/footer.php'; ?>
+
+    <script src="assets/js/toastify/toastify.js" charset="utf-8"></script>
+    <script src="assets/js/toastify/script.js" charset="utf-8"></script>
   </body>
 </html>
