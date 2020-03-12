@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');
+.loader {
+	position : fixed;
+	z-index: 99999999999;
+	background-color: white;
+	background-size: auto;
+	top : 0px;
+	left : 0px;
+	height : 100%;
+	width : 100%;
+	cursor : wait;
+	background-image: url("../images/loading_world.gif");
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.loader_text{
+  color: white;
+  letter-spacing: 3px;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  margin-top: -90px;
+  font-family: 'Anton';
+}
+
+.bg-dark{
+	background-color: #293847 !important;
+}
+
+.bg-orange{
+	background-color: #e33c14;
+}
+
+.menu-categories{
+
+}
+
+.text-orange{
+	color: #e33c14;
+}
+
+.toastify {
+  padding: 12px 20px;
+  color: #ffffff;
+  display: inline-block;
+  box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
+  background: -webkit-linear-gradient(315deg, #73a5ff, #5477f5);
+  background: linear-gradient(135deg, #73a5ff, #5477f5);
+  position: fixed;
+  top: -150px;
+  right: 15px;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.toastify.on { opacity: 1; }
+
+#login-body{
+	background-image: url("../images/pattern.png");
+}
+
+.item-produit{
+	transition: 150ms;
+}
+
+.item-produit:hover{
+	box-shadow: 0px 0px 10px rgba(0,0,0,.15) !important;
+}
