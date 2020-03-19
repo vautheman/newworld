@@ -26,11 +26,12 @@ void DialogConnexion::on_pushButtonConnection_clicked()
     QSqlQuery requete;
 
     requete.exec("select userEmail , userPasswd from utilisateur where userEmail ='" + connectUser + "' and userPasswd='" + connectPasswd +"'");
+    // Si les identifiants rentrés fonctionnent
     if(requete.next())
     {
         qDebug()<<"Connexion OK";
-        Backoffice w;
-        w.show();
+        // On accepte la connexion et le mainWindow prend le relai
+        accept();
     } else qDebug()<<"Connexion fail";
 }
 

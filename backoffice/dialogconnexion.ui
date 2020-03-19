@@ -191,6 +191,9 @@ color: rgb(255, 255, 255);</string>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(234, 238, 241);</string>
         </property>
+        <property name="text">
+         <string>authirard.victor@gmail.com</string>
+        </property>
        </widget>
       </item>
       <item>
@@ -222,6 +225,9 @@ color: rgb(255, 255, 255);</string>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(234, 238, 241);</string>
+        </property>
+        <property name="text">
+         <string>ij4udh1A*</string>
         </property>
         <property name="echoMode">
          <enum>QLineEdit::Password</enum>

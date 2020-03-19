@@ -19,9 +19,12 @@ int main(int argc, char *argv[])
     if(dbNewworld.open())
     {
         qDebug()<<"Connexion à la base OK";
-        Backoffice w;
-        connexion.show();
-        return a.exec();
+        if(connexion.exec()==QDialog::Accepted)
+        {
+            Backoffice maMain;
+            maMain.show();
+            return a.exec();
+        }
     } else qDebug()<<"Connexion à la base FAIL";
     return 125;
 }

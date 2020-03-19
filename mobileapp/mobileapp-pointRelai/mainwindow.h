@@ -15,6 +15,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QNetworkAccessManager *pmyMWM, QString theName, QString theSurname, QString theIdentifiant, QWidget *parent = nullptr);
     ~MainWindow();
+    void remplirQTableWidgetLivraison();
 
 private:
     Ui::MainWindow *ui;

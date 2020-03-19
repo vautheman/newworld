@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<?php include 'assets/include/connectBDD.php'; ?>
+<?php
+include 'assets/include/connectBDD.php';
+if(isset($_SESSION['userId']))
+{
+  header("Location: profile.php");
+} else {
+?>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -41,6 +47,30 @@
                 <input id="btnRejoindre" type="submit" class="btn w-100 btnRejoindre btn-dark" value="Login">
               </div>
 
+              <?php
+              // Formulaire de connexion
+              if(isset($_POST['userMail']) AND isset($_POST['userPassword']))
+              {
+                // On sécurise les données
+                $userMail = htmlspecialchars($_POST['userMail']);
+                $userPassword = $_POST['userPassword'];
+
+                if(!empty($userMail) AND !empty($userPassword))
+                {
+                  $req = $bdd->prepare("SELECT * from utilisateur where userMail = ? and userPasswd = ?");
+                  $req->execute(array($userMail, $userPassword));
+
+                  $cur = $req->fetch();
+                  if(count($cur) == 1)
+                  {
+                    $_SESSION['userId'] = $cur['userId'];
+                    //header('Location: index.php');
+                  }
+                  echo $cur['userId'];  
+                }
+              }
+              ?>
+
             </form>
           </div>
         </div>
@@ -50,3 +80,4 @@
   </body>
   <script src="assets/js/inputControl.js" charset="utf-8"></script>
 </html>
+<?php } ?>
