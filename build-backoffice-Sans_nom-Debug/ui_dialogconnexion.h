@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'dialogconnexion.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.1
+** Created by: Qt User Interface Compiler version 5.11.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,13 +10,10 @@
 #define UI_DIALOGCONNEXION_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
@@ -190,18 +187,16 @@ public:
 
     void retranslateUi(QDialog *DialogConnexion)
     {
-        DialogConnexion->setWindowTitle(QApplication::translate("DialogConnexion", "Dialog", Q_NULLPTR));
-        label_2->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p><span style=\" font-size:14pt;\">Backoffice Newworld</span></p></body></html>", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("DialogConnexion", "Contact Administrator", Q_NULLPTR));
-        label_3->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p>Welcome to the backoffice<br> application. This is where you will<br>be able to moderate and administer<br>the newworld website</p></body></html>", Q_NULLPTR));
-        label_4->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\">LOGIN FORM</span></p></body></html>", Q_NULLPTR));
-        labelLogin->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p><span style=\" font-size:9pt;\">E-MAIL</span></p></body></html>", Q_NULLPTR));
-        lineEditLogin->setText(QApplication::translate("DialogConnexion", "authirard.victor@gmail.com", Q_NULLPTR));
-        labelPassword->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p><span style=\" font-size:9pt;\">PASSWORD</span></p></body></html>", Q_NULLPTR));
-        lineEditPassword->setText(QApplication::translate("DialogConnexion", "ij4udh1A*", Q_NULLPTR));
-        pushButtonConnection->setText(QApplication::translate("DialogConnexion", "LOGIN", Q_NULLPTR));
-        pushButton_2->setText(QApplication::translate("DialogConnexion", "CANCEL", Q_NULLPTR));
-        label_5->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p align=\"right\"><span style=\" font-size:7pt;\">Designed by AUTHEMAN Victor</span></p></body></html>", Q_NULLPTR));
+        DialogConnexion->setWindowTitle(QApplication::translate("DialogConnexion", "Dialog", nullptr));
+        label_2->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p><span style=\" font-size:14pt;\">Backoffice Newworld</span></p></body></html>", nullptr));
+        pushButton->setText(QApplication::translate("DialogConnexion", "Contact Administrator", nullptr));
+        label_3->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p>Welcome to the backoffice<br> application. This is where you will<br>be able to moderate and administer<br>the newworld website</p></body></html>", nullptr));
+        label_4->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\">LOGIN FORM</span></p></body></html>", nullptr));
+        labelLogin->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p><span style=\" font-size:9pt;\">E-MAIL</span></p></body></html>", nullptr));
+        labelPassword->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p><span style=\" font-size:9pt;\">PASSWORD</span></p></body></html>", nullptr));
+        pushButtonConnection->setText(QApplication::translate("DialogConnexion", "LOGIN", nullptr));
+        pushButton_2->setText(QApplication::translate("DialogConnexion", "CANCEL", nullptr));
+        label_5->setText(QApplication::translate("DialogConnexion", "<html><head/><body><p align=\"right\"><span style=\" font-size:7pt;\">Designed by AUTHEMAN Victor</span></p></body></html>", nullptr));
     } // retranslateUi
 
 };
