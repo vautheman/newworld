@@ -67,7 +67,7 @@ include 'assets/include/connectBDD.php';
             <div class="">
               <a href="#">
                 <div class="img pb-1">
-                  <img width="150px" class="text-center" src="assets/images/produits/<?php echo $cur["produitImg"]; ?>" alt="">
+                  <img width="150px" class="text-center" src="assets/images/produits/<?php echo $cur["prodId"]."/".$cur["produitImg"]; ?>" alt="">
                 </div>
               </a>
               <div class="w-100 p-2" style="position: absolute; bottom: -20px; left:0;">

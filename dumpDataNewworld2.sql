@@ -19,6 +19,10 @@
 -- Table structure for table `administrateur`
 --
 
+DROP DATABASE IF EXISTS newworld;
+CREATE DATABASE newworld;
+USE newworld;
+
 DROP TABLE IF EXISTS `administrateur`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -49,7 +53,7 @@ CREATE TABLE `choix` (
 	  KEY `prodId` (`prodId`),
 	  CONSTRAINT `choix_ibfk_1` FOREIGN KEY (`relaiId`) REFERENCES `pointRelai` (`relaiId`),
 	  CONSTRAINT `choix_ibfk_2` FOREIGN KEY (`prodId`) REFERENCES `producteurs` (`prodId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Table structure for table `clients`
@@ -190,7 +194,7 @@ CREATE TABLE `produits` (
 	  KEY `typeProduitId` (`typeProduitId`),
 	  CONSTRAINT `produits_ibfk_1` FOREIGN KEY (`prodId`) REFERENCES `producteurs` (`prodId`),
 	  CONSTRAINT `produits_ibfk_2` FOREIGN KEY (`typeProduitId`) REFERENCES `typeProduit` (`typeProduitId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Table structure for table `produits`

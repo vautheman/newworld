@@ -1,5 +1,5 @@
-<div class="shadow mb-5 pt-2 pr-2 pl-2 bg-dark" style="position: relative; top:82px; z-index: 2;">
-  <div class="row bg-white">
+<div class="shadow mb-5 pt-2 bg-dark" style="position: relative; top:82px; z-index: 2;">
+  <div class="row bg-white m-0">
     <div class="col bg-dark">
       <div class="ml-4 mb-1 d-inline-block">
         <a href="#" class="bg-white pr-3 pl-3 pb-2 pt-2 text-dark "><i class="fas fa-bars text-orange"></i> Tout nos rayons</a>
