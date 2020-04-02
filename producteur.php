@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
 include 'assets/include/connectBDD.php';
+if(isset($_GET['prodId']) and !empty($_GET['prodId']))
+{
+    header("Location: index.php");
+} else {
 ?>
 <html lang="en" dir="ltr">
 <head>
@@ -68,3 +72,4 @@ include 'assets/include/connectBDD.php';
     </script>
   </body>
 </html>
+<?php } ?>
