@@ -1,4 +1,4 @@
-<div class="shadow mb-5 pt-2 bg-dark" style="position: relative; top:82px; z-index: 2;">
+<div class="shadow mb-5 pt-2 bg-dark position-relative" id="secondHeader" style="z-index: 2;">
   <div class="row bg-white m-0">
     <div class="col bg-dark">
       <div class="ml-4 mb-1 d-inline-block">
@@ -26,3 +26,7 @@
     </div>
   </div>
 </div>
+<script>
+  var height_firstHeader = document.getElementById("firstHeader").scrollHeight;
+  document.getElementById("secondHeader").style.top = height_firstHeader-1 + "px";
+</script>

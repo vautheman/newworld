@@ -82,6 +82,23 @@ include 'assets/include/connectBDD.php';
           ?>
         </ul>
       </div>
+
+      <!-- Les producteurs les plus cotés -->
+      <section class="container mt-5 blockquote">
+        <h2 class="mb-5 pl-2">Last producer :</h2>
+        <?php
+        $reqProd = $bdd->prepare("SELECT * from producteurs");
+        $reqProd->execute();
+        while($curProd = $reqProd->fetch())
+        {
+        ?>
+          <!-- <img src="assets/images/producteurs/<?php echo $curProd['prodId']."/".$curProd['prodImg']; ?>" class="img-circle" alt=""> -->
+          <a href="producteur.php?prodId=<?php echo $curProd['prodId']; ?>"><img src="assets/images/producteurs/1/29.jpg" class="rounded-circle m-2" width="175px" alt=""></a>
+        <?php
+        }
+        ?>
+      </section>
+
     </main>
 
     <?php include 'assets/include/footer.php'; ?>

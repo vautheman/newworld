@@ -1,4 +1,4 @@
-<div class="w-100 bg-dark d-table pb-3" style="position: fixed; z-index: 9;">
+<div class="w-100 bg-dark d-table pb-3" id="firstHeader" style="position: fixed; z-index: 9;">
   <div class="row pl-4 pr-4 pt-4">
     <div class="col-sm d-flex flex-row flex-nowrap">
       <h4 class="text-light mt-1"><i class="fas fa-globe-europe text-orange"></i><a href="/newworld/" class="text-decoration-none text-white ml-2">New World</a></h4>
