@@ -1,5 +1,6 @@
 #include "backoffice.h"
 #include "dialogconnexion.h"
+#include "rayon.h"
 #include <QApplication>
 #include <QtSql>
 

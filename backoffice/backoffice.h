@@ -34,6 +34,7 @@ private slots:
 
 private:
     Ui::Backoffice *ui;
+    QString rayonLib;
 };
 
 #endif // BACKOFFICE_H

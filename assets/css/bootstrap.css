@@ -3211,7 +3211,6 @@ input[type="button"].btn-block {
   border-bottom: 0;
   border-left: 0.3em solid transparent;
   position: relative;
-  top: -21px;
 }
 
 .dropdown-toggle:empty::after {

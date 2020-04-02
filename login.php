@@ -57,16 +57,15 @@ if(isset($_SESSION['userId']))
 
                 if(!empty($userMail) AND !empty($userPassword))
                 {
-                  $req = $bdd->prepare("SELECT * from utilisateur where userMail = ? and userPasswd = ?");
+                  $req = $bdd->prepare("SELECT * from utilisateur where userEmail = ? and userPasswd = ?");
                   $req->execute(array($userMail, $userPassword));
 
                   $cur = $req->fetch();
-                  if(count($cur) == 1)
+                  if(!empty($cur['userId']))
                   {
                     $_SESSION['userId'] = $cur['userId'];
-                    //header('Location: index.php');
-                  }
-                  echo $cur['userId'];  
+                    header("Location: profile.php");
+                  } //else echo "error";
                 }
               }
               ?>

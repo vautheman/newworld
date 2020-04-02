@@ -50,11 +50,13 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../backoffice/main.cpp \
 		../backoffice/backoffice.cpp \
-		../backoffice/dialogconnexion.cpp moc_backoffice.cpp \
+		../backoffice/dialogconnexion.cpp \
+		../backoffice/rayon.cpp moc_backoffice.cpp \
 		moc_dialogconnexion.cpp
 OBJECTS       = main.o \
 		backoffice.o \
 		dialogconnexion.o \
+		rayon.o \
 		moc_backoffice.o \
 		moc_dialogconnexion.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -99,6 +101,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		../backoffice/.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -118,9 +121,11 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../backoffice/backoffice.pro ../backoffice/backoffice.h \
-		../backoffice/dialogconnexion.h ../backoffice/main.cpp \
+		../backoffice/dialogconnexion.h \
+		../backoffice/rayon.h ../backoffice/main.cpp \
 		../backoffice/backoffice.cpp \
-		../backoffice/dialogconnexion.cpp
+		../backoffice/dialogconnexion.cpp \
+		../backoffice/rayon.cpp
 QMAKE_TARGET  = backoffice
 DESTDIR       = 
 TARGET        = backoffice
@@ -174,6 +179,7 @@ Makefile: ../backoffice/backoffice.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/lin
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -240,6 +246,7 @@ Makefile: ../backoffice/backoffice.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/lin
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -277,8 +284,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../backoffice/backoffice.h ../backoffice/dialogconnexion.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../backoffice/main.cpp ../backoffice/backoffice.cpp ../backoffice/dialogconnexion.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../backoffice/backoffice.h ../backoffice/dialogconnexion.h ../backoffice/rayon.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../backoffice/main.cpp ../backoffice/backoffice.cpp ../backoffice/dialogconnexion.cpp ../backoffice/rayon.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../backoffice/backoffice.ui ../backoffice/dialogconnexion.ui $(DISTDIR)/
 
 
@@ -341,7 +348,8 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 ####### Compile
 
 main.o: ../backoffice/main.cpp ../backoffice/backoffice.h \
-		../backoffice/dialogconnexion.h
+		../backoffice/dialogconnexion.h \
+		../backoffice/rayon.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../backoffice/main.cpp
 
 backoffice.o: ../backoffice/backoffice.cpp ../backoffice/backoffice.h \
@@ -352,6 +360,9 @@ dialogconnexion.o: ../backoffice/dialogconnexion.cpp ../backoffice/dialogconnexi
 		../backoffice/backoffice.h \
 		ui_dialogconnexion.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialogconnexion.o ../backoffice/dialogconnexion.cpp
+
+rayon.o: ../backoffice/rayon.cpp ../backoffice/rayon.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rayon.o ../backoffice/rayon.cpp
 
 moc_backoffice.o: moc_backoffice.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_backoffice.o moc_backoffice.cpp

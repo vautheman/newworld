@@ -27,11 +27,13 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         backoffice.cpp \
-    dialogconnexion.cpp
+    dialogconnexion.cpp \
+    rayon.cpp
 
 HEADERS += \
         backoffice.h \
-    dialogconnexion.h
+    dialogconnexion.h \
+    rayon.h
 
 FORMS += \
         backoffice.ui \
